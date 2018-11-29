@@ -10,6 +10,7 @@ protocol Carte : {
 
     //attaque : Carte -> Int
     //retourne la valeur d'attaque de la Carte
+    //precondition : carte soldat que si son emplacement est Main (car point depend du nombre de carte dans la main)
     func attaque() -> Int
 
     //defense : Carte -> Int
