@@ -24,7 +24,7 @@ protocol Royaume : Sequence {
 	//AjouterRoyaume : Royaume x Carte -> Royaume
 	//Ajoute une carte au royaume
 	//postcondition : le royaume n'est pas vide
-	//postcondition : tailleRoyaume(ajouterRoyaume(carte))=tailleRoyaume()+1
+	//postcondition : tailleRoyaume(ajouterRoyaume(carte))=tailleRoyaume()+1>0
 	@discardableResult
 	mutating func ajouterRoyaume(carte : Carte)->Self
 

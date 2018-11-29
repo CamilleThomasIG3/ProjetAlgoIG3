@@ -3,12 +3,12 @@ protocol Emplacement : {
     //init : -> Emplacement
     //Création d'un Emplacement
     init()
-    
+
     //getEmplacement : Emplacement -> Int
     //retourne un entier correspondant à l'emplacement d'une Carte sur le Plateau (Pioche, Main, Royaume, ChampBataille) /!\ Quand une carte est détruite on fait quoi de l'emplacement ?
     //Post : init() => getEmplacement() == (une valeur de base)
     func getEmplacement() -> Int
-    
+
     //setEmplacement : Emplacement x Int -> Emplacement
     //change la valeur de l'Emplacement par l'entier passé en paramètre
     //Pre: newEmplacement est l'une des valeurs valables pour Emplacement
