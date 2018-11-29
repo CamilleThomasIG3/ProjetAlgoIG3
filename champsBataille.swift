@@ -23,6 +23,11 @@ protocol ChampBataille  : Sequence {
     //Post : si NbreCartechamp>0 => champVide() == Faux
     func NbreCartechamp() -> Int
 
+    //NbreCarteDefensechamp : ChampBataille -> Int
+    //retourne le nombre de carte présent sur le ChampBataille
+    //Post : si NbreCarteDefensechamp>0 => champVide() == Faux
+    func NbreCarteDefensechamp() -> Int
+
     //ChampVide : ChampBataille -> Bool
     //retourne un vrai si le ChampBataille est vide, faux sinon
     func champVide() -> Bool
