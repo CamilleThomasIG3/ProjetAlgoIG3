@@ -6,8 +6,8 @@ protocol Main : Sequence{
 	where IteratorMain.Element == Carte
 
 	//init : -> Main
-	//créer une main avec une seule carte : le roi
-	init()
+	//créer une main avec une seule carte : le roi du joueur
+	init(roi : Carte)
 
 	//AjouterMain : Main x Carte -> Main
 	//ajoute la carte passée en paramétre à la main
