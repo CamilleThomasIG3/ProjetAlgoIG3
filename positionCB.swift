@@ -10,5 +10,5 @@ Protocol Position : {
 	//precondition : nvPos doit être vide ou dans le Champs de Bataille
 	//resultat : Une position mise à jour
 	@discardableResult
-	mutating func modifierPosition(nvPos : Position) -> Self
+	mutating func modifierPosition(nvPos : Position?) -> Self
 }
