@@ -30,7 +30,7 @@ protocol Carte {
     //modifie le nom de la position avec celui passe en parametre
     //donnee : nvPos : String?
     //precondition : nvPos doit être un nom valable (F1,F2,F3,A1,A2,A3) ou Vide 
-    //postcondition : getNom() == nvPos
+    //postcondition : getPosition() == nvPos
     @discardableResult
     mutating func setPosition(nvPos : String?) -> Self
     
