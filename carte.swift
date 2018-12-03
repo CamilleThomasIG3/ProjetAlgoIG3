@@ -9,18 +9,18 @@ protocol Carte {
     //on mettra le reste par defaut
     init(nvNom : String, nvDefense : Int, nvAttaque : Int, nvEtat : Bool, nvPos : String?)
     
-    //nom : Carte -> String
+    //getNom : Carte -> String
     //retourne le nom de la Carte (le nom correspond au type de carte, càd Archer, Soldat, Garde)
-    func nom() -> String
+    func getNom() -> String
     
-    //attaque : Carte -> Int
+    //getAttaque : Carte -> Int
     //retourne la valeur d'attaque de la Carte
     //precondition : carte soldat que si son emplacement est Main (car point depend du nombre de carte dans la main)
-    func attaque() -> Int
+    func getAttaque() -> Int
     
-    //defense : Carte -> Int
+    //getDefense : Carte -> Int
     //retourne la valeur de défense de la Carte
-    func defense() -> Int
+    func getDefense() -> Int
     
     //getPosition : Carte -> String?
     //retourne le nom de la poistion de la Carte sur le champ de bataille (ou Vide si la carte n'est pas placée sur le champ de bataille)
@@ -30,18 +30,18 @@ protocol Carte {
     //modifie le nom de la position avec celui passe en parametre
     //donnee : nvPos : String?
     //precondition : nvPos doit être un nom valable (F1,F2,F3,A1,A2,A3) ou Vide 
-    //postcondition : getPosition() == nvPos
+    //postcondition : getNom() == nvPos
     @discardableResult
     mutating func setPosition(nvPos : String?) -> Self
     
-    //etatCarte : Carte -> Bool
-    //retourne l'état de la Carte (si elle se trouve en position d'attaque ou de défense)
-    func etatCarte() -> Bool
-    
+    //getEtatCarte : Carte -> Bool
+    //retourne l'état de la Carte (si elle se trouve en position d'attaque (vrai) ou de défense (faux))
+    func getEtatCarte() -> Bool
     //vrai = attaque ou faux= défense
-    //getdegat : Carte -> Int
+    
+    //getDegat : Carte -> Int
     //retourne le nombre de point de dégat de la carte
-    func getdegat()->Int
+    func getDegat()->Int
     
     //setdegat : CartexInt -> Carte
     //change le nombre de point de dégat de la carte en ajoutant le degat passé en paramètre
@@ -60,4 +60,11 @@ protocol Carte {
     //emplacementCarte : Carte -> Emplacement
     //retourne l'Emplacement de la Carte
     func emplacementCarte() -> Emplacement
+    
+    //setAttaque : Int x Carte -> Carte
+    //remplace l'attaque de la Carte par la valeur passée en paramètre
+    //précondition : nvAttaque >= 0 et <= 7
+    //postcondition : setAttaque(nvAttaque) => getAttaque() == nvAttaque
+    @discardableResult
+    func setAttaque(nvAttaque : Int) -> Self
 }
