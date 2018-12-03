@@ -5,9 +5,9 @@ protocol Carte : {
     init()//plusieurs créations en fonction du type de carte pour éviter de devoir changer les valeurs pour chaque carte ?
 
     //init: -> Carte
-    //Création d'une carte initialisée avec une valeur d'attaque, de défense, une position sur le ChampBataille et un Emplacement sur le Plateau passée en parametre
-    //on mettra par defaut un degat à 0
-    init(nvNom : String, nvDefense : Int, nvAttaque : Int, nvPosition : Position, nvEmplacement : Emplacement, nvEtat : Bool)
+    //Création d'une carte initialisée avec une valeur de nom, d'attaque, de défense et un etat passées en parametre
+    //on mettra le reste par defaut
+    init(nvNom : String, nvDefense : Int, nvAttaque : Int, nvEtat : Bool)
 
     //nom : Carte -> String
     //retourne le nom de la Carte (le nom correspond au type de carte, càd Archer, Soldat, Garde)

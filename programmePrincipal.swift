@@ -64,8 +64,10 @@ func action(j : Joueur, p : Partie)
       rep1 : String = saisieUtilisateur("Quelle nom de carte voulez-vous mettre sur votre champs de Bataille ?")
       rep2 : String = saisieUtilisateur("avec quel point de défense ?")
       rep3 : String = saisieUtilisateur("avec quel point d'attaque ?")
-      rep3 : String = saisieUtilisateur("en quelle case voulez-vous la placer")
-      var carteAttaque = Carte(nvNom : rep1, nvDefense : Int(rep2), nvAttaque : Int(rep3), nvPosition : , nvEmplacement : 3, nvEtat : true)
+      var carteAttaque = Carte(nvNom : rep1, nvDefense : Int(rep2), nvAttaque : Int(rep3), nvEtat : true)
+      if
+        rep4 : String = saisieUtilisateur("en quelle case voulez-vous la placer F1, F2, F3, A1, A2, ou A3 ?")
+        carteAttaque.position().setNom(nvNom : rep4)
 
     }
     else //joueur==J2

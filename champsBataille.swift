@@ -8,6 +8,11 @@ protocol ChampBataille  : Sequence {
     //Post : init() => champVide() == Vrai
     init()
 
+    //getCase : StringxChampsBataille -> Case
+    //retourne une case du champsBAtaille
+    //donnee : le nom de la case voulu
+    func getCase(nom : String)->Case
+
     //insererCarte : CHampBataille x Case-> ChampBataille
     //insère une carte sur la case passée en paramètre du champs de bataille
     //donnee : une case
