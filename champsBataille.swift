@@ -13,6 +13,12 @@ protocol ChampBataille  : Sequence {
     //donnee : le nom de la case voulu
     func getCase(nom : String)->Case
 
+    //getCarte : StringxChampsBataille -> Carte
+    //retourne la carte du champsBataille qui est à la position passée en paramètre
+    //donnee : une position
+    //precondition : position € {F1,F2,F3,A1,A2,A3}
+    func getCarte(position : String)->Carte
+
     //insererCarte : CHampBataille x Case-> ChampBataille
     //insère une carte sur la case passée en paramètre du champs de bataille
     //donnee : une case
