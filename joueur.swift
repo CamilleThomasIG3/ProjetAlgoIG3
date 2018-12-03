@@ -6,6 +6,7 @@ protocol Joueur : {
 
     //nom : Joueur -> String
     //retourne le nom du joueur
+    //postcondition : nom(joueur)=="J1" ou "J2"
     func nom() -> String
 
     //champs : Joueur -> ChampsBataille

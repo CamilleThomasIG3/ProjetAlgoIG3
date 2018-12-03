@@ -1,4 +1,4 @@
-//demande un message à l'utilisateur et renvoie sa réponse
+joueurAdverse()//demande un message à l'utilisateur et renvoie sa réponse
 //donnee : message est la question demandée à l'utilisateur
 //resultat : renvoie la réponse de l'utilisateur ou une erreure si sa réponse n'est pas bonne
 func saisieUtilisateur(message : String)->String
@@ -22,16 +22,16 @@ func afficherCarteCB(carte : c)
 
 //prepare un tour en faisant piocher le joueur et en redressant ses cartes qui etaient en attaque sur son CB
 func preparation(p : inout Partie){
-  if p.J1().pioche().piocheVide()//alors lautre aussi car on pioche une carte par tour
+  if p.joueurCourant().pioche().piocheVide()//alors lautre aussi car on pioche une carte par tour
   {
     p.setMotifFin(nvMotifFin : "les pioches des 2 joueurs sont vides")
-    if p.J1().royaume().tailleRoyaume()>p.J2().royaume().tailleRoyaume()
+    if p.joueurCourant().royaume().tailleRoyaume()>p.joueurAdverse().royaume().tailleRoyaume()
     {
-      p.setGagnant(nvGagnant : "J1")
+      p.setGagnant(nvGagnant : joueurCourant().nom())
     }
-    else if p.J1().royaume().tailleRoyaume()<p.J2().royaume().tailleRoyaume()
+    else if p.joueurCourant().royaume().tailleRoyaume()<p.joueurAdverse().royaume().tailleRoyaume()
     {
-      p.setGagnant(nvGagnant : "J2")
+      p.setGagnant(nvGagnant : joueurAdverse().nom())
     }
     else {p.setGagnant(nvGagnant : "egalité")}
     p.setFin(nvFin : true)
@@ -87,27 +87,23 @@ func attaquer(p : inout Partie)
       }
     }
     rep1 : String = saisieUtilisateur("La carte avec laquelle vous voulez attaquer est sur quelle case?")
-    if joueurCourant()=="J1"
+    var essai : Int =0
+    repeat
     {
-      var essai : Int =0
-      repeat
-      {
-        rep2 : String = saisieUtilisateur("Quelle case adverse voulez-vous attaquer F1, F2, F3, A1, A2, ou A3 ?")
-        essai+=1 ///A REFAIRE A PARTIR DICI CAR REP EN MOINS ET getCarte En plus !
-      }while (!p.J2().champsBataille().getCase(nom : rep2).etatCase() || !p.J1().champsBataille().caseAtteignable(caseDep : p.J1().champsBataille().getCase(nom : rep4) , caseArr : p.J2().champsBataille().getCase(nom : rep5), nomCarte : rep1)) && essai<6
-      //TQ case adverse occupée et non atteignable par la carte choisi comme attaque et qu'on a essayé moins de 6 fois
-      if (!p.J2().champsBataille().getCase(nom : rep5).etatCase() || !p.J1().champsBataille().caseAtteignable(caseDep : p.J1().champsBataille().getCase(nom : rep4) , caseArr : p.J2().champsBataille().getCase(nom : rep5), nomCarte : rep1)) && essai=6
-      {
-          //il ne peut pas attaquer avec cette carte
-      }
-      else
-      {
-        p.joueurCourant().champsBataille().getCarte()
-      }
+      rep2 : String = saisieUtilisateur("Quelle case adverse voulez-vous attaquer F1, F2, F3, A1, A2, ou A3 ?")
+      essai+=1 ///A REFAIRE A PARTIR DICI CAR REP EN MOINS ET getCarte En plus !
+    }while (p.joueurAdverse().champsBataille().getCase(nom : rep2).etatCase() || !p.joueurCourant().champsBataille().caseAtteignable(caseDep : p.joueurCourant().champsBataille().getCase(nom : rep1) , caseArr : p.joueurAdverse().champsBataille().getCase(nom : rep2), nomCarte : p.joueurCourant().champsBataille().getCarte(position : rep1).nom())) && essai<6
+    //TQ case adverse occupée et non atteignable par la carte choisi comme attaque et qu'on a essayé moins de 6 fois
+    if (p.joueurAdverse().champsBataille().getCase(nom : rep2).etatCase() || !p.joueurCourant().champsBataille().caseAtteignable(caseDep : p.joueurCourant().champsBataille().getCase(nom : rep1) , caseArr : p.joueurAdverse().champsBataille().getCase(nom : rep2), nomCarte : p.joueurCourant().champsBataille().getCarte(position : rep1).nom())) && essai=6
+    {
+      //il ne peut pas attaquer avec cette carte
     }
-    else
+    else //il peut attaquer
     {
-
+      p.joueurCourant().champsBataille().getCarte(position : rep1).modifierEtatCarte(newEtat : true) //carte en position attaque
+      if p.joueurCourant().champsBataille().getCarte(position : rep1).getAttaque() == p.joueurAdverse().champsBataille().getCarte(position : rep2).getDefense()
+      && p.joueurAdverse().champsBataille().getCarte(position : rep2).getDegat()==0
+      //si lattaque joueurCourant = defense joueurAdverse et que cest la premiere attaque sur cette carte de ladversaire
     }
   }
 }
@@ -116,6 +112,7 @@ func attaquer(p : inout Partie)
 func main(){
   var partie = Partie() //initialise la partie avec 2 joueurs et des conditions de fin
   partie.setJoueurCourant(j : "J1")
+  partie.setJoueurAdverse(j : "J2")
 
   while !partie.getFin()//tant que la partie n'est pas terminée
   {

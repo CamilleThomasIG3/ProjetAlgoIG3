@@ -20,13 +20,27 @@ protocol Partie {
     //postcondition : joueurCourant()=="J1" ou "J2"
     func joueurCourant()->Joueur
 
+    //joueurAdverse : Partie -> Joueur
+    //retourne le joueur qui n'est pas en train de joué pendant ce tour
+    //postcondition : joueurCourant()=="J1" ou "J2"
+    //postcondition : joueurCourant()!=joueurAdverse
+    func joueurAdverse()->Joueur
+
     //setJoueurCourant : PartiexJoueur->Partie
-    //modifie le joureur courant avec celui en parametre
+    //modifie le joueur courant avec celui en parametre
     //donnee : un Joueur
     //precondition : j=="J1" ou "J2"
     //postconditon : joueurCourant(setJoueurCourant(j))==j
     @discardableResult
     mutating func setJoueurCourant(j : Joueur)->Self
+
+    //setJoueurAdverse : PartiexJoueur->Partie
+    //modifie le joueur adverse avec celui en parametre
+    //donnee : un Joueur
+    //precondition : j=="J1" ou "J2"
+    //postconditon : joueurAdverse(setJoueurAdverse(j))==j
+    @discardableResult
+    mutating func setJoueurAdverse(j : Joueur)->Self
 
     //getFin : Partie -> Bool
     //retourne vrai si la partie est terminée et faux sinon
