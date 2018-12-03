@@ -1,55 +1,55 @@
-func getNomTest() -> Int{
+func getPositionTest() -> Int{
     var retourTest : Int = 0
-    var positionTest : Position = Position()
-    let r : String? = positionTest.getNom()
+    var carteTest : Carte = Carte()
+    let r : String? = carteTest.getPosition()
     if r != nil{
-        print("Position est mal initialisee ou getNom ne recupere mal son nom")
+        print("la position de la Carte est mal initialisee ou getPosition recupere mal son nom")
         retourTest += 1
     }
     else{
-        print("getNom renvoie correctemement le nom de la Position initialisee")
+        print("getPosition renvoie correctemement le nom de la position de la carte initialisee")
     }
-    var nvNom : String? = "F2"
-    let r2 : String? = positionTest.setNom(nvNom : nvNom).getNom()
-    if r2 != nvNom{
-        print("getNom ne renvoie pas le bon nom pour une Position lorsqu'il a ete modifie")
+    var nvPos : String? = "F2"
+    let r2 : String? = carteTest.setPosition(nvPos : nvPos).getPosition()
+    if r2 != nvPos{
+        print("getPosition ne renvoie pas la bonne position de la Carte lorsqu'elle a ete modifiee")
         retourTest += 1
     }
     else{
-        print("getNom renvoie le bon nom pour une Position lorsqu'il a ete modifie")
+        print("getPosition renvoie la bonne position de la Carte lorsqu'elle a ete modifiee")
     }
     return retourTest
 }
 
-func setNomTest() -> Int{
+func setPositionTest() -> Int{
     var retourTest : Int = 0
-    var positionTest : Position = Position()
-    var nvNom : String? = "A6"
+    var carteTest : Carte = Carte()
+    var nvPos : String? = "A6"
     do{
-        try positionTest.setNom(nvNom : nvNom)
+        try carteTest.setPosition(nvPos : nvPos)
         print("Precondition 'nvPos doit être vide ou une Position valide' respectee")
         retourTest += 1
     }
     catch{
         print("Precondition 'nvPos doit être vide ou une Position valide' respectee")
     }
-    nvNom=nil
-    let r = positionTest.setNom(nvNom : nvNom).getNom()
+    nvPos=nil
+    let r = carteTest.setPos(nvPos : nvPos).getPos()
     if r != nil{
-        print("setNom ne modifie pas correctement le nom de la Position lorsqu'on veut le mettre à vide")
+        print("setPosition ne modifie pas correctement la position de la Carte lorsqu'on veut la mettre à Vide")
         retourTest += 1
     }
     else{
-        print("setNom met correctement le nom de la Position à Vide")
+        print("setPosition met correctement la position de la  à Vide")
     }
-    nvNom="A2"
-    let r2 = positionTest.setNom(nvNom : nvNom).getNom()
-    if r2 != nvNom{
-        print("Postcondition 'getNom() => nvPos.getNom()' non respectee")
+    nvPos="A2"
+    let r2 = positionTest.setPosition(nvPos : nvPos).getPos()
+    if r2 != nvPos{
+        print("Postcondition 'getPosition(nvPos) => getPosition() == nvPos' non respectee")
         retourTest += 1
     }
     else{
-        print("Postcondition 'getNom() => nvPos.getNom()' respectee")
+        print("Postcondition 'setPosition(nvPos) => getPosition == nvPos' respectee")
     }
     return retourTest
 }
