@@ -8,14 +8,14 @@ protocol ChampBataille  : Sequence {
     //Post : init() => champVide() == Vrai
     init()
 
-    //insererCarte : CHampBataille x Case -> ChampBataille
+    //insererCarte : CHampBataille x Case-> ChampBataille
     //insère une carte sur la case passée en paramètre du champs de bataille
     //donnee : une case
     //precondition : la case appartient au ChampBAtaille
     //precondition : la case est vide
     //postcondittion : champVide==False
     @discardableResult
-    mutating func insererCarte(case : Case)->Self
+    mutating func insererCarte(c : Case)->Self
 
     //NbreCartechamp : ChampBataille -> Int
     //retourne le nombre de carte présent sur le ChampBataille

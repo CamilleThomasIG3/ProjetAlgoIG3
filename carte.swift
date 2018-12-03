@@ -29,7 +29,7 @@ protocol Carte : {
     //etatCarte : Carte -> Bool
     //retourne l'état de la Carte (si elle se trouve en position d'attaque ou de défense)
     func etatCarte() -> Bool
-    //attaque ou défense
+    //vrai = attaque ou faux= défense
 
     //getdegat : Carte -> Int
     //retourne le nombre de point de dégat de la carte
@@ -41,6 +41,12 @@ protocol Carte : {
     //postcondition : si 0<degat(carte)<defense(carte) => emplacement(carte)=champDeBataille
     @discardableResult
     mutating func setdegat(degat : Int)->Self
+
+    //setPosition : CartexPosition -> Carte
+    //change la position de la carte avec celle passée en paramètre
+    //postcondition :
+    @discardableResult
+    mutating func setPosition(position : Position?)->Self
 
     //modifierEtatCarte : Carte x Bool -> Carte
     //change l'Etat de la Carte passée en paramètre par le booléen passé en paramètre
