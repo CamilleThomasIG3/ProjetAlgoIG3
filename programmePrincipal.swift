@@ -75,7 +75,26 @@ func deployer(p : inout Partie)
 //test si on est dans une conscription : adversaire plus de carte sur son CB alros doit en placer une de son royaume
 func testConscription(p : inout Partie)
 {
-
+  if p.joueurAdverse().champsBataille().champVide() //si son CB vide
+  {
+    if !p.joueurAdverse().main().mainVide() //sa main nest pas vide
+    {
+      print("conscription du joueur : "+p.joueurAdverse().nom()+"une carte de votre main rejoins votre champs de bataille\n")
+      var j : String = p.joueurCourant().getNom()
+      p.joueurCourant().setNom()=p.joueurAdverse().getNom() //pour que deployer se fasse sur le bon joueur
+      deployer(p : &p)
+      p.joueurCourant().setNom()=j
+    }
+    else //on prend dans son royaume
+    {
+      var carteADeploye : Carte = p.joueurAdverse().main().premierRoyaume()
+      print("conscription du joueur : "+p.joueurAdverse().nom()+"une carte de votre royaume rejoins votre champs de bataille")
+      print("Voici la carte qui sera placer sur votre champs de Bataille : "+carteADeploye+"\n")
+      var rep : String = saisieUtilisateur("En quelle case voulez vous la mettre F1,F2,F3,A1,A2,A3 ?")
+      p.joueurAdverse().champsBataille().insererCarte(cas : p.joueurAdverse().champsBataille().getCase(nom : rep) ,carte : carteADeploye) //insere carte sur CB
+      p.joueurAdverse().royaume().enleverRoyaume() //enleve carte du royaume
+    }
+  }
 }
 
 //permet au joueurCourant d'attaquer autant de fois qu'il veut et si cela est possible
@@ -125,7 +144,7 @@ func attaquer(p : inout Partie)
         p.joueurAdverse().champsBataille().getCarte(position : rep2).getEmplacement().setEmplacement(newEmplacement : 2) //MAJ emplacement carte capturé (2: royaume)
         p.joueurAdverse().champsBataille().getCase(nom : rep2).modifierCase(newEtat : false) //libérer la case
         p.joueurCourant().royaume().ajouterRoyaume(carte : p.joueurAdverse().champsBataille().getCarte(position : rep2)) //ajout dans royaume du joueurCourant
-        testConscription(p : &p)
+        testConscription(p : &p) //si son CB deviens vide il faut le remplir
       }
       else if nbAttaque < nbDefense && nbDegat + nbDefense < nbAttaque
       //si point defense > point attaque ET pointdefense + point degat avant < point attaque
@@ -138,7 +157,7 @@ func attaquer(p : inout Partie)
         p.joueurAdverse().champsBataille().getCarte(position : rep2).setPosition(nvPos : nil) //mettre position de la carte detruite à vide
         p.joueurAdverse().champsBataille().getCarte(position : rep2).getEmplacement().setEmplacement(newEmplacement : nil) //MAJ emplacement carte capturé (Vide: cimetiere)
         p.joueurAdverse().champsBataille().getCase(nom : rep2).modifierCase(newEtat : false) //libérer la case
-        testConscription(p : &p)
+        testConscription(p : &p) //si son CB deviens vide il faut le remplir
       }
     }
     repeat
@@ -150,6 +169,25 @@ func attaquer(p : inout Partie)
       attaque = false
     }
     if p.joueurCourant().champsBataille().NbreCarteDefensechamp()==0{ print("Vous n'avez plus de carte pour attaquer")}
+  }
+}
+
+//permet au joueur de mettre une carte de sa main dans son royaume (il est obligé si il a plus de 6 cartes en main)
+func developpement(p : inout Partie)
+{
+  if p.joueurCourant().main().nbreCartesMain()>6
+  {
+    print("vous devez mettre une carte au royaume\n")
+    for c in p.joueurCourant().main() //parcours des cartes grace à l'iterateur de Main
+    {
+      afficherCarte(carte : c)
+    }
+    rep1 : String = saisieUtilisateur("Quelle nom de carte voulez-vous mettre sur votre champs de Bataille ?")
+    rep2 : String = saisieUtilisateur("avec quel point de défense ?")
+    rep3 : String = saisieUtilisateur("avec quel point d'attaque ?")
+    p.joueurCourant().royaume().ajouterRoyaume(carte : ) //met la case en etat occupé
+    p.joueurCourant().main().getCarte(nom : rep1, defense : Int(rep2), attaque : Int(rep3)).getEmplacement().setEmplacement(newEmplacement : 2)//change l'emplacement de la carte
+    p.joueurCourant().main().enleverMain(carte : getCarte(nom : rep1, defense : Int(rep2), attaque : Int(rep3)))
   }
 }
 
@@ -175,6 +213,9 @@ func main(){
       attaquer(p : &Partie)
     }
     else if reponse!="1"  {print("Mauvaise réponse")}
+
+    //developpement
+    developpement(p : &partie)
   }
 }
 

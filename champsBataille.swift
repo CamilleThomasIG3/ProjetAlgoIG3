@@ -19,14 +19,14 @@ protocol ChampBataille  : Sequence {
     //precondition : position € {F1,F2,F3,A1,A2,A3}
     func getCarte(position : String)->Carte
 
-    //insererCarte : CHampBataille x Case-> ChampBataille
+    //insererCarte : CHampBataille x Case x Carte-> ChampBataille
     //insère une carte sur la case passée en paramètre du champs de bataille
-    //donnee : une case
+    //donnee : une case et une carte
     //precondition : la case appartient au ChampBAtaille
     //precondition : la case est vide
     //postcondittion : champVide==False
     @discardableResult
-    mutating func insererCarte(c : Case)->Self
+    mutating func insererCarte(cas : Case, carte : Carte)->Self
 
     //NbreCartechamp : ChampBataille -> Int
     //retourne le nombre de carte présent sur le ChampBataille
