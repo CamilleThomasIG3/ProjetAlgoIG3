@@ -15,6 +15,11 @@ func afficherCarte(carte : c)
   print("carte "+c.nom()+" de défense "+c.defense()+" et d'attaque "+c.attaque()+"\n")
 }
 
+func afficherCarteCB(carte : c)
+{
+  print("carte "+c.nom()+" de défense "+c.defense()+" et d'attaque "+c.attaque()+"et en case"+c.getPosition()+"\n")
+}
+
 //prepare un tour en faisant piocher le joueur et en redressant ses cartes qui etaient en attaque sur son CB
 func preparation(p : inout Partie){
   if p.J1().pioche().piocheVide()//alors lautre aussi car on pioche une carte par tour
@@ -78,18 +83,27 @@ func attaquer(p : inout Partie)
     {
       if !c.etatCarte() //carte en defense
       {
-        afficherCarte(carte : c)
+        afficherCarteCB(carte : c)
       }
     }
-    rep1 : String = saisieUtilisateur("Quelle nom de carte voulez-vous mettre en mode attaque ?")
-    rep2 : String = saisieUtilisateur("avec quel point de défense ?")
-    rep3 : String = saisieUtilisateur("avec quel point d'attaque ?")
+    rep1 : String = saisieUtilisateur("La carte avec laquelle vous voulez attaquer est sur quelle case?")
     if joueurCourant()=="J1"
     {
+      var essai : Int =0
       repeat
       {
-        rep4 : String = saisieUtilisateur("Quelle case adverse voulez-vous attaquer F1, F2, F3, A1, A2, ou A3 ?")
-      }while !p.J2().champsBataille().getCase(nom : rep4).etatCase || caseAtteinable()//case non occupée
+        rep2 : String = saisieUtilisateur("Quelle case adverse voulez-vous attaquer F1, F2, F3, A1, A2, ou A3 ?")
+        essai+=1 ///A REFAIRE A PARTIR DICI CAR REP EN MOINS ET getCarte En plus !
+      }while (!p.J2().champsBataille().getCase(nom : rep2).etatCase() || !p.J1().champsBataille().caseAtteignable(caseDep : p.J1().champsBataille().getCase(nom : rep4) , caseArr : p.J2().champsBataille().getCase(nom : rep5), nomCarte : rep1)) && essai<6
+      //TQ case adverse occupée et non atteignable par la carte choisi comme attaque et qu'on a essayé moins de 6 fois
+      if (!p.J2().champsBataille().getCase(nom : rep5).etatCase() || !p.J1().champsBataille().caseAtteignable(caseDep : p.J1().champsBataille().getCase(nom : rep4) , caseArr : p.J2().champsBataille().getCase(nom : rep5), nomCarte : rep1)) && essai=6
+      {
+          //il ne peut pas attaquer avec cette carte
+      }
+      else
+      {
+        p.joueurCourant().champsBataille().getCarte()
+      }
     }
     else
     {
