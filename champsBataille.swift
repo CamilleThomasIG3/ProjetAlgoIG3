@@ -19,15 +19,6 @@ protocol ChampBataille  : Sequence {
     //precondition : position € {F1,F2,F3,A1,A2,A3}
     func getCarte(position : String)->Carte
 
-    //insererCarte : CHampBataille x Case x Carte-> ChampBataille
-    //insère une carte sur la case passée en paramètre du champs de bataille
-    //donnee : une case et une carte
-    //precondition : la case appartient au ChampBAtaille
-    //precondition : la case est vide
-    //postcondittion : champVide==False
-    @discardableResult
-    mutating func insererCarte(cas : Case, carte : Carte)->Self
-
     //NbreCartechamp : ChampBataille -> Int
     //retourne le nombre de carte présent sur le ChampBataille
     //Post : si NbreCartechamp==0 => champVide() == Vrai
@@ -48,6 +39,15 @@ protocol ChampBataille  : Sequence {
     //ChampVide : ChampBataille -> Bool
     //retourne un vrai si le ChampBataille est vide, faux sinon
     func champVide() -> Bool
+
+    //insererCarte : CHampBataille x Case x Carte-> ChampBataille
+    //insère une carte sur la case passée en paramètre du champs de bataille
+    //donnee : une case et une carte
+    //precondition : la case appartient au ChampBAtaille
+    //precondition : la case est vide
+    //postcondittion : champVide==False
+    @discardableResult
+    mutating func insererCarte(cas : Case, carte : Carte)->Self
 
     //redresserCarte : CHampBataille -> ChampBataille
     //met toutes les cartes présentes sur le CB en etat de défense

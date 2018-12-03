@@ -7,7 +7,7 @@ protocol Carte {
     //init: -> Carte
     //Création d'une carte initialisée avec une valeur de nom, d'attaque, de défense et un etat passées en parametre
     //on mettra le reste par defaut
-    init(nvNom : String, nvDefense : Int, nvAttaque : Int, nvEtat : Bool, nvPos : String?)
+    init(nvNom : String, nvDefense : Int, nvAttaque : Int, nvEtat : Bool?, nvPos : String?, nvEmplacement : Emplacement)
 
     //getNom : Carte -> String
     //retourne le nom de la Carte (le nom correspond au type de carte, càd Archer, Soldat, Garde, Roi)
@@ -26,6 +26,25 @@ protocol Carte {
     //retourne le nom de la poistion de la Carte sur le champ de bataille (ou Vide si la carte n'est pas placée sur le champ de bataille)
     func getPosition() -> String?
 
+    //getEtatCarte : Carte -> Bool
+    //retourne l'état de la Carte (si elle se trouve en position d'attaque (vrai) ou de défense (faux) (vide si elle n'est pas sur le champ de bataille))
+    func getEtatCarte() -> Bool?
+
+    //emplacementCarte : Carte -> Emplacement
+    //retourne l'Emplacement de la Carte
+    func getEmplacementCarte() -> Emplacement
+
+    //getDegat : Carte -> Int
+    //retourne le nombre de point de dégat de la carte
+    func getDegat() -> Int
+
+    //setAttaque : Int x Carte -> Carte
+    //remplace l'attaque de la Carte par la valeur passée en paramètre
+    //précondition : nvAttaque >= 0 et <= 7
+    //postcondition : setAttaque(nvAttaque) => getAttaque() == nvAttaque
+    @discardableResult
+    mutating func setAttaque(nvAttaque : Int) -> Self
+
     //setPosition : String? x Carte -> Carte
     //modifie le nom de la position avec celui passe en parametre
     //donnee : nvPos : String?
@@ -34,37 +53,23 @@ protocol Carte {
     @discardableResult
     mutating func setPosition(nvPos : String?) -> Self
 
-    //getEtatCarte : Carte -> Bool
-    //retourne l'état de la Carte (si elle se trouve en position d'attaque (vrai) ou de défense (faux))
-    func getEtatCarte() -> Bool
-    //vrai = attaque ou faux= défense
+    //setEtatCarte : Carte x Bool -> Carte
+    //change l'Etat de la Carte par le booléen passé en paramètre
+    //Post: getEtatCarte() == newEtat (le booléen passé en paramètre)
+    @discardableResult
+    mutating func setEtatCarte(nvEtat : Bool) -> Self
 
-    //getDegat : Carte -> Int
-    //retourne le nombre de point de dégat de la carte
-    func getDegat()->Int
+    //setEmplacementCarte : Carte x Emplacement -> Carte
+    //change l'Emplacement (zone sur le plateau) de la Carte par celui passé en paramètre
+    //precondition :
+    //postcondition: setEmplacementCarte(newEmplacement) => getEmplacementCarte() == newEmplacement
+    @discardableResult
+    mutating func setEmplacementCarte(nvEmplacement : Emplacement) -> Self
 
     //setdegat : CartexInt -> Carte
     //change le nombre de point de dégat de la carte en ajoutant le degat passé en paramètre
     //postcondition : si degat(carte)>defense(carte) => empalcement(carte)=cimetiere
     //postcondition : si 0<degat(carte)<defense(carte) => emplacement(carte)=champDeBataille
     @discardableResult
-    mutating func setdegat(degat : Int)->Self
-
-    //modifierEtatCarte : Carte x Bool -> Carte
-    //change l'Etat de la Carte passée en paramètre par le booléen passé en paramètre
-    //Pre: La Carte doit exister (avoir été initialisée) et sa position doit correspondre à un emplacement du Plateau
-    //Post: etatCarte() == newEtat (le booléen passé en paramètre)
-    @discardableResult
-    mutating func modifierEtatCarte(newEtat : Bool) -> Self
-
-    //emplacementCarte : Carte -> Emplacement
-    //retourne l'Emplacement de la Carte
-    func emplacementCarte() -> Emplacement
-
-    //setAttaque : Int x Carte -> Carte
-    //remplace l'attaque de la Carte par la valeur passée en paramètre
-    //précondition : nvAttaque >= 0 et <= 7
-    //postcondition : setAttaque(nvAttaque) => getAttaque() == nvAttaque
-    @discardableResult
-    mutating func setAttaque(nvAttaque : Int) -> Self
+    mutating func setDegat(nvDegat : Int) -> Self
 }
