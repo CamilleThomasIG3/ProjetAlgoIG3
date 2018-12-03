@@ -1,8 +1,13 @@
 //Carte représente une carte du jeu, elle est caractérisée par un nom (qui correspond à son type), une valeur d'attaque, une valeur de défense, une position sur le ChampBataille et un Emplacement sur le Plateau
 protocol Carte : {
     //init: -> Carte
-    //Création d'une carte initialisée avec une valeur d'attaque, de défense, une position sur le ChampBataille et un Emplacement sur le Plateau
+    //Création d'une carte initialisée avec un nom, une valeur d'attaque, de défense, une position sur le ChampBataille et un Emplacement sur le Plateau par defaut
     init()//plusieurs créations en fonction du type de carte pour éviter de devoir changer les valeurs pour chaque carte ?
+
+    //init: -> Carte
+    //Création d'une carte initialisée avec une valeur d'attaque, de défense, une position sur le ChampBataille et un Emplacement sur le Plateau passée en parametre
+    //on mettra par defaut un degat à 0
+    init(nvNom : String, nvDefense : Int, nvAttaque : Int, nvPosition : Position, nvEmplacement : Emplacement, nvEtat : Bool)
 
     //nom : Carte -> String
     //retourne le nom de la Carte (le nom correspond au type de carte, càd Archer, Soldat, Garde)

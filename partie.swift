@@ -1,7 +1,7 @@
 //Partie est un ensemble qui comprend 2 joueurs, et des conditions de fin de partie
-protocol Partie : {
+protocol Partie {
     //init : -> Partie
-    //création d'une partie, initialisée avec 2 joueurs et un indicateur, motif et gagnant de fin de partie
+    //création d'une partie, initialisée avec 2 joueurs (et chacun son roi) et un indicateur, motif et gagnant de fin de partie
     //postconfition : getFin(partie)==false, getMotifFin(partie)==Vide, getGagnant=Vid,
     init()
 
@@ -35,13 +35,13 @@ protocol Partie : {
 
     //getGagnant : Partie -> String
     //Retourne le gagnant de la partie
-    //postcondition : si getFin(partie)==true => getGagnant(partie)=="J1" ou "J2"
+    //postcondition : si getFin(partie)==true => getGagnant(partie)=="J1" ou "J2" ou "egalité"
     func getGagnant() -> String?
 
     //setGagnant : Partie x String -> Partie
     //modifie le gagnant de la partie avec celui passé en paramètre
     //precondtion : nvGagnant != ""
-    //postcondition : setGagnant(nvGagnant) => getGagnant == "J1" ou "J2"
+    //postcondition : setGagnant(nvGagnant) => getGagnant == "J1" ou "J2" ou "egalité"
     @discardableResult
     mutating func setGagnant(nvGagnant : String) -> Partie
 }
