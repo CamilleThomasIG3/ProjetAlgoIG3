@@ -1,6 +1,6 @@
 func getEmplacementTest() -> Int {
     var retourTest : Int = 0
-    var emplacementTest : Emplacement
+    var emplacementTest : Emplacement = Emplacement()
     let r : Int? = emplacementTest.getEmplacement()
     if r != 0{
         print("Emplacement est mal initialise ou getEmplacement ne recupere pas sa valeur correctement")
@@ -21,7 +21,7 @@ func getEmplacementTest() -> Int {
 
 func setEmplacementTest() -> Int {
     var retourTest : Int = 0
-    var emplacementTest : Emplacement
+    var emplacementTest : Emplacement = Emplacement()
     var newEmplacement : Int? = -1
     do{
         try emplacementTest.setEmplacement(newEmplacement : newEmplacement)
