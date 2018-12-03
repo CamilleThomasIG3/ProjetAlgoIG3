@@ -33,6 +33,12 @@ protocol ChampBataille  : Sequence {
     //Post : si NbreCarteDefensechamp>0 => champVide() == Faux
     func NbreCarteDefensechamp() -> Int
 
+    //caseAtteignable : ChampsBataillexCasexCasexString -> Bool
+    //retourne vrai si la CaseArr de l'adversaire est atteignable par la carte de nom nomCarte placée en caseDep, faux sinon
+    //Precondition : caseDep et caseArr € {F1,F2,F3,A1,A2,A3}
+    //Precondition : nomCarte € {Roi, Archer, Garde, Soldat}
+    func caseAtteignable(caseDep : Case, caseArr : Case, nomCarte : String) -> Bool
+
     //ChampVide : ChampBataille -> Bool
     //retourne un vrai si le ChampBataille est vide, faux sinon
     func champVide() -> Bool

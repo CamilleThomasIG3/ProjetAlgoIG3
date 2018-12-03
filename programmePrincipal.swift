@@ -9,20 +9,22 @@ func saisieUtilisateur(message : String)->String
   return res
 }
 
+//affiche une carte en donnant son noms et ses points de defense et d'attaque
 func afficherCarte(carte : c)
 {
   print("carte "+c.nom()+" de défense "+c.defense()+" et d'attaque "+c.attaque()+"\n")
 }
 
+//prepare un tour en faisant piocher le joueur et en redressant ses cartes qui etaient en attaque sur son CB
 func preparation(p : inout Partie){
-  if p.joueurCourant().pioche().piocheVide()//alors lautre aussi car on pioche une carte par tour
+  if p.J1().pioche().piocheVide()//alors lautre aussi car on pioche une carte par tour
   {
     p.setMotifFin(nvMotifFin : "les pioches des 2 joueurs sont vides")
-    if p.joueurCourant().royaume().tailleRoyaume()>p.J2().royaume().tailleRoyaume()
+    if p.J1().royaume().tailleRoyaume()>p.J2().royaume().tailleRoyaume()
     {
-      p.setGagnant(nvGagnant : "joueurCourant")
+      p.setGagnant(nvGagnant : "J1")
     }
-    else if p.joueurCourant().royaume().tailleRoyaume()<p.J2().royaume().tailleRoyaume()
+    else if p.J1().royaume().tailleRoyaume()<p.J2().royaume().tailleRoyaume()
     {
       p.setGagnant(nvGagnant : "J2")
     }
@@ -40,6 +42,7 @@ func preparation(p : inout Partie){
     afficherCarte(carte : carte)
 }
 
+//permet au joueurCourant de deployer une carte de son choix si cela est possible
 func deployer(p : inout Partie)
 {
   if p.joueurCourant().champsBataille().nbCarteChamp()<6 //encore de la place sur CB
@@ -64,15 +67,41 @@ func deployer(p : inout Partie)
   }
 }
 
-func attaquer(j : Joueur, p : Partie)
+//permet au joueurCourant d'attaquer autant de fois qu'il veut et si cela est possible
+func attaquer(p : inout Partie)
 {
+  var attaque : Bool = true //le joueur veut attaquer
+  while attaque && p.joueurCourant().champsBataille().NbreCarteDefensechamp()!=0
+  //tant que le joueur veut attaquer et qu'il reste des cartes en mode defense sur son CB
+  {
+    for c in p.joueurCourant().champsBataille() //parcours des cartes grace à l'iterateur de CB
+    {
+      if !c.etatCarte() //carte en defense
+      {
+        afficherCarte(carte : c)
+      }
+    }
+    rep1 : String = saisieUtilisateur("Quelle nom de carte voulez-vous mettre en mode attaque ?")
+    rep2 : String = saisieUtilisateur("avec quel point de défense ?")
+    rep3 : String = saisieUtilisateur("avec quel point d'attaque ?")
+    if joueurCourant()=="J1"
+    {
+      repeat
+      {
+        rep4 : String = saisieUtilisateur("Quelle case adverse voulez-vous attaquer F1, F2, F3, A1, A2, ou A3 ?")
+      }while !p.J2().champsBataille().getCase(nom : rep4).etatCase || caseAtteinable()//case non occupée
+    }
+    else
+    {
 
+    }
+  }
 }
 
 
 func main(){
   var partie = Partie() //initialise la partie avec 2 joueurs et des conditions de fin
-  partie.setJoueurCourant(j : "joueurCourant")
+  partie.setJoueurCourant(j : "J1")
 
   while !partie.getFin()//tant que la partie n'est pas terminée
   {
