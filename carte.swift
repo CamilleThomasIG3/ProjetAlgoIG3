@@ -31,7 +31,8 @@ protocol Carte : {
     //donnee : nvNom : String?
     //precondition : nvNom doit être un nom valable (Vide ou F1,F2,F3,A1,A2,A3)
     //postcondition : getNom() == nvNom
-    func setPosition(nvNom : String?) -> Self
+    @discardableResult
+    mutating func setPosition(nvNom : String?) -> Self
     
     //etatCarte : Carte -> Bool
     //retourne l'état de la Carte (si elle se trouve en position d'attaque ou de défense)
@@ -48,12 +49,6 @@ protocol Carte : {
     //postcondition : si 0<degat(carte)<defense(carte) => emplacement(carte)=champDeBataille
     @discardableResult
     mutating func setdegat(degat : Int)->Self
-
-    //setPosition : CartexPosition -> Carte
-    //change la position de la carte avec celle passée en paramètre
-    //postcondition :
-    @discardableResult
-    mutating func setPosition(position : Position?)->Self
 
     //modifierEtatCarte : Carte x Bool -> Carte
     //change l'Etat de la Carte passée en paramètre par le booléen passé en paramètre
