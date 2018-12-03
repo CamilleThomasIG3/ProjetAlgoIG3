@@ -66,5 +66,5 @@ protocol Carte {
     //précondition : nvAttaque >= 0 et <= 7
     //postcondition : setAttaque(nvAttaque) => getAttaque() == nvAttaque
     @discardableResult
-    func setAttaque(nvAttaque : Int) -> Self
+    mutating func setAttaque(nvAttaque : Int) -> Self
 }

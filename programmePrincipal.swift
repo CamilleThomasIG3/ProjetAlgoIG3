@@ -63,9 +63,11 @@ func deployer(p : inout Partie)
     {
       rep4 : String = saisieUtilisateur("en quelle case voulez-vous la placer F1, F2, F3, A1, A2, ou A3 ?")
     }while p.joueurCourant().champsBataille().getCase(nom : rep4).etatCase //case occupée
+    var carte : Carte = getCarte(nom : rep1, defense : Int(rep2), attaque : Int(rep3)) //carte a ajouter au CB
     p.joueurCourant().champsBataille().insererCarte(c : getCase(nom : rep4)) //met la case en etat occupé
-    p.joueurCourant().main().getCarte(nom : rep1, defense : Int(rep2), attaque : Int(rep3)).setPosition(nvNom : rep4)//change la position de la carte
-    p.joueurCourant().main().enleverMain(carte : getCarte(nom : rep1, defense : Int(rep2), attaque : Int(rep3)))
+    p.joueurCourant().main().carte.setPosition(nvNom : rep4)//change la position de la carte
+    p.joueurCourant().main().carte.emplacementCarte().setEmplacement(newEmplacement : 3)//change lemplacement de la carte (3 : CB)
+    p.joueurCourant().main().enleverMain(carte : carte)
   }
   else {
     print("Votre champs de Bataille est déjà plein, tant pis vous ne ferez rien")
@@ -85,7 +87,7 @@ func testConscription(p : inout Partie)
       deployer(p : &p)
       p.joueurCourant().setNom()=j
     }
-    else //on prend dans son royaume
+    else if !p.joueurAdverse().royaume().royaumeVide()
     {
       var carteADeploye : Carte = p.joueurAdverse().main().premierRoyaume()
       print("conscription du joueur : "+p.joueurAdverse().nom()+"une carte de votre royaume rejoins votre champs de bataille")
@@ -94,7 +96,28 @@ func testConscription(p : inout Partie)
       p.joueurAdverse().champsBataille().insererCarte(cas : p.joueurAdverse().champsBataille().getCase(nom : rep) ,carte : carteADeploye) //insere carte sur CB
       p.joueurAdverse().royaume().enleverRoyaume() //enleve carte du royaume
     }
+    else //fin de partie
+    {
+      p.setMotifFin(nvMotifFin : "conscription impossible du joueur"+p.joueurAdverse().nom()+"\n")
+      p.setGagnant(nvGagnant : p.joueurCourant().nom())
+      p.setFin(nvFin : true)
+    }
   }
+}
+
+func mettreAuRoyaume(p : inout Partie)
+{
+  for c in p.joueurCourant().main() //parcours des cartes grace à l'iterateur de Main
+  {
+    afficherCarte(carte : c)
+  }
+  rep1 : String = saisieUtilisateur("Quelle nom de carte voulez-vous mettre sur votre Royaume ?")
+  rep2 : String = saisieUtilisateur("avec quel point de défense ?")
+  rep3 : String = saisieUtilisateur("avec quel point d'attaque ?")
+  var carte : Carte = getCarte(nom : rep1, defense : Int(rep2), attaque : Int(rep3)) //carte a ajouter au royaume
+  p.joueurCourant().royaume().ajouterRoyaume(carte : carte) //ajoute la carte au royaume
+  p.joueurCourant().main().carte.getEmplacement().setEmplacement(newEmplacement : 2)//change l'emplacement de la carte
+  p.joueurCourant().main().enleverMain(carte : carte)
 }
 
 //permet au joueurCourant d'attaquer autant de fois qu'il veut et si cela est possible
@@ -178,16 +201,22 @@ func developpement(p : inout Partie)
   if p.joueurCourant().main().nbreCartesMain()>6
   {
     print("vous devez mettre une carte au royaume\n")
-    for c in p.joueurCourant().main() //parcours des cartes grace à l'iterateur de Main
+    mettreAuRoyaume(p : &p)
+  }
+  else if p.joueurCourant().main().mainVide()
+  {
+    print("Vous n'avez plus de carte en main donc vous ne pouvez pas mettre une carte au royaume\n")
+  }
+  else
+  {
+    repeat
     {
-      afficherCarte(carte : c)
+      var rep : String = saisieUtilisateur("Voulez vous mettre une carte au royaume ? 1-Oui, 2-Non\n")
+    }while rep != "1" || rep != "2"
+    if rep=="1"
+    {
+      mettreAuRoyaume(p : &p)
     }
-    rep1 : String = saisieUtilisateur("Quelle nom de carte voulez-vous mettre sur votre champs de Bataille ?")
-    rep2 : String = saisieUtilisateur("avec quel point de défense ?")
-    rep3 : String = saisieUtilisateur("avec quel point d'attaque ?")
-    p.joueurCourant().royaume().ajouterRoyaume(carte : ) //met la case en etat occupé
-    p.joueurCourant().main().getCarte(nom : rep1, defense : Int(rep2), attaque : Int(rep3)).getEmplacement().setEmplacement(newEmplacement : 2)//change l'emplacement de la carte
-    p.joueurCourant().main().enleverMain(carte : getCarte(nom : rep1, defense : Int(rep2), attaque : Int(rep3)))
   }
 }
 
@@ -216,7 +245,15 @@ func main(){
 
     //developpement
     developpement(p : &partie)
+
+    //fin tour
+    print("Fin du tour de "+partie.joueurCourant().nom()+"au tour de "partie.joueurAdverse().nom()+"\n")
+    var temp : Joueur = partie.joueurCourant()
+    partie.setJoueurCourant()=partie.joueurAdverse()
+    partie.setJoueurAdverse()=temp
   }
+  //fin de partie
+  print("partie terminé par "+motif+" et le gagnant est"+gagnant+"\n")
 }
 
 main()
