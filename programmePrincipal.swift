@@ -72,6 +72,12 @@ func deployer(p : inout Partie)
   }
 }
 
+//test si on est dans une conscription : adversaire plus de carte sur son CB alros doit en placer une de son royaume
+func testConscription(p : inout Partie)
+{
+
+}
+
 //permet au joueurCourant d'attaquer autant de fois qu'il veut et si cela est possible
 func attaquer(p : inout Partie)
 {
@@ -96,15 +102,54 @@ func attaquer(p : inout Partie)
     //TQ case adverse occupée et non atteignable par la carte choisi comme attaque et qu'on a essayé moins de 6 fois
     if (p.joueurAdverse().champsBataille().getCase(nom : rep2).etatCase() || !p.joueurCourant().champsBataille().caseAtteignable(caseDep : p.joueurCourant().champsBataille().getCase(nom : rep1) , caseArr : p.joueurAdverse().champsBataille().getCase(nom : rep2), nomCarte : p.joueurCourant().champsBataille().getCarte(position : rep1).nom())) && essai=6
     {
-      //il ne peut pas attaquer avec cette carte
+      print("cette carte ne peut attaquée")
     }
     else //il peut attaquer
     {
       p.joueurCourant().champsBataille().getCarte(position : rep1).modifierEtatCarte(newEtat : true) //carte en position attaque
-      if p.joueurCourant().champsBataille().getCarte(position : rep1).getAttaque() == p.joueurAdverse().champsBataille().getCarte(position : rep2).getDefense()
-      && p.joueurAdverse().champsBataille().getCarte(position : rep2).getDegat()==0
+      var nbAttaque : Int = p.joueurCourant().champsBataille().getCarte(position : rep1).getAttaque() //nbre Attaque du joueur Courant
+      var nbDefense : Int = p.joueurAdverse().champsBataille().getCarte(position : rep2).getDefense() //nbre Defense du joueur Adverse
+      var nbDegat : Int = p.joueurAdverse().champsBataille().getCarte(position : rep2).getDegat() //nbre degat carte adverse
+
+      if p.joueurAdverse().champsBataille().getCarte(position : rep2).getNom()=="Roi"
+      {//fin partie par capture de roi
+        p.setMotifFin(nvMotifFin : "execution du roi")
+        p.setGagnant(nvGagnant : joueurCourant().nom())
+        p.setFin(nvFin : true)
+      }
+      else if nbAttaque == nbDefense && nbDegat == 0
       //si lattaque joueurCourant = defense joueurAdverse et que cest la premiere attaque sur cette carte de ladversaire
+      {
+        //mettre la carte de l'adversaire dans le royaume
+        p.joueurAdverse().champsBataille().getCarte(position : rep2).setPosition(nvPos : nil) //mettre position de la carte capturée à vide
+        p.joueurAdverse().champsBataille().getCarte(position : rep2).getEmplacement().setEmplacement(newEmplacement : 2) //MAJ emplacement carte capturé (2: royaume)
+        p.joueurAdverse().champsBataille().getCase(nom : rep2).modifierCase(newEtat : false) //libérer la case
+        p.joueurCourant().royaume().ajouterRoyaume(carte : p.joueurAdverse().champsBataille().getCarte(position : rep2)) //ajout dans royaume du joueurCourant
+        testConscription(p : &p)
+      }
+      else if nbAttaque < nbDefense && nbDegat + nbDefense < nbAttaque
+      //si point defense > point attaque ET pointdefense + point degat avant < point attaque
+      {
+        //enregistrer degat
+        p.joueurAdverse().champsBataille().getCarte(position : rep2).setdegat(degat : nbDegat + nbAttaque) //MAJ degat de carte adverse
+      }
+      else //carte au cimetiere
+      {
+        p.joueurAdverse().champsBataille().getCarte(position : rep2).setPosition(nvPos : nil) //mettre position de la carte detruite à vide
+        p.joueurAdverse().champsBataille().getCarte(position : rep2).getEmplacement().setEmplacement(newEmplacement : nil) //MAJ emplacement carte capturé (Vide: cimetiere)
+        p.joueurAdverse().champsBataille().getCase(nom : rep2).modifierCase(newEtat : false) //libérer la case
+        testConscription(p : &p)
+      }
     }
+    repeat
+    {
+      var att : String = saisieUtilisateur("Voulez-vous attaquer avec une autre de vos cartes ? 1-Oui 2-Non")
+    }while att != "1" || att != "2"
+    if att=="2"
+    {
+      attaque = false
+    }
+    if p.joueurCourant().champsBataille().NbreCarteDefensechamp()==0{ print("Vous n'avez plus de carte pour attaquer")}
   }
 }
 
