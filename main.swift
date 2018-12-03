@@ -29,6 +29,11 @@ protocol Main : Sequence{
 	@discardableResult
 	mutating func enleverMain(carte : Carte)->Self
 
+	//getCarte : StringxIntxIntxMain -> Carte
+	//retourne la carte avec le nom, la defense et attaque passés en parametre
+	//données : le nom de la carte, les points de defense, les points d'attaque
+	func getCarte(nom : String, defense : Int, attaque : Int?)
+
 	//MainVide : Main -> Booleen
 	//Indique si la main est vide ou non
 	//resultat : Retourne vrai si la main est vide et faux sinon
