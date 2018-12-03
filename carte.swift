@@ -24,7 +24,7 @@ protocol Carte : {
 
     //emplacement : Carte -> Emplacement
     //retourne l'emplacaement de la Carte sur le plateau
-    func emplacement() -> Emplacement
+    func position() -> Position?
 
     //etatCarte : Carte -> Bool
     //retourne l'état de la Carte (si elle se trouve en position d'attaque ou de défense)
