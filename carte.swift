@@ -22,10 +22,17 @@ protocol Carte : {
     //retourne la valeur de défense de la Carte
     func defense() -> Int
 
-    //emplacement : Carte -> Emplacement
-    //retourne l'emplacaement de la Carte sur le plateau
-    func position() -> Position?
-
+    //getPosition : Carte -> String?
+    //retourne le nom de la poistion de la Carte sur le champ de bataille (ou Vide si la carte n'est pas placée sur le champ de bataille)
+    func getPosition() -> String?
+    
+    //setPosition : String? x Carte -> Carte
+    //modifie le nom de la position avec celui passe en parametre
+    //donnee : nvNom : String?
+    //precondition : nvNom doit être un nom valable (Vide ou F1,F2,F3,A1,A2,A3)
+    //postcondition : getNom() == nvNom
+    func setPosition(nvNom : String?) -> Self
+    
     //etatCarte : Carte -> Bool
     //retourne l'état de la Carte (si elle se trouve en position d'attaque ou de défense)
     func etatCarte() -> Bool
