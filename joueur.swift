@@ -1,7 +1,7 @@
-//Joueur est un ensemble comportant ChampsBataille, Pioche , Royaume et Main
-protocol Joueur : {
+//Joueur est un ensemble comportant champBataille, Pioche , Royaume et Main
+protocol Joueur {
     //init : -> Joueur
-    //création d'un Joueur, initialisé avec nom, ChampBataille, Pioche, Royaume et Main
+    //création d'un Joueur, initialisé avec nom, champBataille, Pioche, Royaume et Main
     init()
 
     //nom : Joueur -> String
@@ -9,9 +9,9 @@ protocol Joueur : {
     //postcondition : nom(joueur)=="J1" ou "J2"
     func nom() -> String
 
-    //champs : Joueur -> ChampsBataille
-    //retourne le ChampBataille du joueur
-    func champsBataille() -> ChampBataille
+    //champBataille : Joueur -> champBataille
+    //retourne le champBataille du joueur
+    func champBataille() -> champBataille
 
     //pioche : Joueur -> Pioche
     //retourne la Pioche du joueur

@@ -1,6 +1,6 @@
 func initTest() -> Int{
     var retourTest : Int = 0
-    var champBatailleTest : ChampBataille = ChampBataille()
+    var champBatailleTest : champBataille = champBataille()
     let r : Bool = champVide()
     if !r {
         print("postcondition : init() => champVide() non respectee. Le champ de bataille n'est pas bien initialise")
@@ -15,7 +15,7 @@ func initTest() -> Int{
 func getCaseTest() -> Int{
     var retourTest : Int = 0
     let tabPositions : [String] = ["A1","A2","A3","F1","F2","F3"]
-    var champBatailleTest : ChampBataille = ChampBataille()
+    var champBatailleTest : champBataille = champBataille()
     for i in tabPositions{
         let r : Case = champBatailleTest.getCase(nom : i)
         if r.etatCase() != false{
@@ -44,7 +44,7 @@ func getCaseTest() -> Int{
 
 func getCarteTest() -> Int{
     var retourTest : Int = 0
-    var champBatailleTest : ChampBataille = ChampBataille()
+    var champBatailleTest : champBataille = champBataille()
     do{
         try champBatailleTest.getCarte(position : "E4")
         print("precondition 'position appartient a {F1,F2,F3,A1,A2,A3}' non respectee")

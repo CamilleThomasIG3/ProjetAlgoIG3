@@ -17,12 +17,12 @@ protocol Partie {
 
     //joueurCourant : Partie -> Joueur
     //retourne le joueur qui est en train de joué pendant ce tour
-    //postcondition : joueurCourant()=="J1" ou "J2"
+    //postcondition : joueurCourant()==J1() ou J2()
     func joueurCourant()->Joueur
 
     //joueurAdverse : Partie -> Joueur
     //retourne le joueur qui n'est pas en train de joué pendant ce tour
-    //postcondition : joueurCourant()=="J1" ou "J2"
+    //postcondition : joueurCourant()==J1() ou J2()
     //postcondition : joueurCourant()!=joueurAdverse
     func joueurAdverse()->Joueur
 

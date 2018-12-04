@@ -1,13 +1,8 @@
-//Carte représente une carte du jeu, elle est caractérisée par un nom (qui correspond à son type), une valeur d'attaque, une valeur de défense, une position sur le ChampBataille et un Emplacement sur le Plateau
+//Carte représente une carte du jeu, elle est caractérisée par un nom (qui correspond à son type), une valeur d'attaque, une valeur de défense, une position sur le champBataille et un Emplacement sur le Plateau
 protocol Carte {
     //init: -> Carte
-    //Création d'une carte initialisée avec un nom, une valeur d'attaque, de défense, une position sur le ChampBataille et un Emplacement sur le Plateau par defaut
+    //Création d'une carte initialisée avec un nom, une valeur d'attaque, de défense, une position sur le champBataille et un Emplacement sur le Plateau par defaut
     init()//plusieurs créations en fonction du type de carte pour éviter de devoir changer les valeurs pour chaque carte ?
-
-    //init: -> Carte
-    //Création d'une carte initialisée avec une valeur de nom, d'attaque, de défense et un etat passées en parametre
-    //on mettra le reste par defaut
-    init(nvNom : String, nvDefense : Int, nvAttaque : Int, nvEtat : Bool?, nvPos : String?, nvEmplacement : Emplacement)
 
     //getNom : Carte -> String
     //retourne le nom de la Carte (le nom correspond au type de carte, càd Archer, Soldat, Garde, Roi)
@@ -30,9 +25,10 @@ protocol Carte {
     //retourne l'état de la Carte (si elle se trouve en position d'attaque (vrai) ou de défense (faux) (vide si elle n'est pas sur le champ de bataille))
     func getEtatCarte() -> Bool?
 
-    //emplacementCarte : Carte -> Emplacement
-    //retourne l'Emplacement de la Carte
-    func getEmplacementCarte() -> Emplacement
+    //getEmplacement : Carte -> Int?
+    //retourne un entier correspondant à l'emplacement d'une Carte sur le Plateau (0 : Pioche,1 : Main,2 : Royaume,3 : champBataille, Vide : Cimetière)
+    //Post : init() => getEmplacement() == (une valeur de base ou vide (si Vide : la carte a été détruite))
+    func getEmplacement() -> Int?
 
     //getDegat : Carte -> Int
     //retourne le nombre de point de dégat de la carte
@@ -59,12 +55,12 @@ protocol Carte {
     @discardableResult
     mutating func setEtatCarte(nvEtat : Bool) -> Self
 
-    //setEmplacementCarte : Carte x Emplacement -> Carte
-    //change l'Emplacement (zone sur le plateau) de la Carte par celui passé en paramètre
-    //precondition :
-    //postcondition: setEmplacementCarte(newEmplacement) => getEmplacementCarte() == newEmplacement
+    //setEmplacement : Carte x Int -> Carte
+    //change la valeur de l'Emplacement de la carte par l'entier passé en paramètre
+    //Pre: newEmplacement est l'une des valeurs valables pour Emplacement (0 : Pioche, 1 : Main, 2 : Royaume, 3 : Champ de bataille, Vide : détruite)
+    //Post: getEmplacement() == newEmplacement
     @discardableResult
-    mutating func setEmplacementCarte(nvEmplacement : Emplacement) -> Self
+    mutating func setEmplacement(newEmplacement : Int?) -> Self
 
     //setdegat : CartexInt -> Carte
     //change le nombre de point de dégat de la carte en ajoutant le degat passé en paramètre
