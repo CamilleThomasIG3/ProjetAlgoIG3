@@ -16,7 +16,7 @@ protocol ChampBataille  : Sequence {
     //getCarte : StringxChampsBataille -> Carte
     //retourne la carte du champsBataille qui est à la position passée en paramètre
     //donnee : une position
-    //precondition : position € {F1,F2,F3,A1,A2,A3}
+    //precondition : position € {F1,F2,F3,A1,A2,A3}, ChampBataille doit avoir été initialisé
     func getCarte(position : String)->Carte
 
     //NbreCartechamp : ChampBataille -> Int
