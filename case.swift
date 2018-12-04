@@ -1,5 +1,5 @@
 //Case représente une case du ChampBataille (ou Royaume ?) sur laquelle pourra ou non être présente une carte
-protocol Case : {
+protocol Case {
     //init : -> Case
     //Création d'une Case initialisée avec un état (vide)
     init()
