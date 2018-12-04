@@ -246,8 +246,6 @@ func developpement(p : inout Partie)
 //programme principale qui permet de jouer à Art Of War
 func main(){
   var partie = Partie() //initialise la partie avec 2 joueurs et des conditions de fin
-  partie.setJoueurCourant(j : partie.J1())
-  partie.setJoueurAdverse(j : partie.J2())
 
   while !partie.getFin()//tant que la partie n'est pas terminée
   {

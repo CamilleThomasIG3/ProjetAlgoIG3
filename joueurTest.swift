@@ -1,4 +1,4 @@
-func nomTest() -> Int{
+func initTest() -> Int{
     var retourTest : Int = 0
     var joueurTest : Joueur = Joueur()
     let r : String = joueurTest.nom()
@@ -12,4 +12,4 @@ func nomTest() -> Int{
     return retourTest
 }
 
-print("il y a "+nomTest()+" erreurs dans la fonction nom() du type Joueur\n")
+print("il y a "+initTest()+" erreurs dans la fonction init() du type Joueur\n")
