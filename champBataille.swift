@@ -1,62 +1,62 @@
-//champBataille représente, pour un joueur, son côté du champ de bataille. Il est composé de 6 positions
-protocol champBataille  : Sequence {
+//ChampBataille représente, pour un joueur, son côté du champ de bataille. Il est composé de 6 positions
+protocol ChampBataille  : Sequence {
     associatedtype IteratorCB : IteratorProtocol
         where IteratorCB.Element == Case
 
-    //init : -> champBataille
-    //Création d'un champBataille composé de 6 Cases
+    //init : -> ChampBataille
+    //Création d'un ChampBataille composé de 6 Cases
     //Post : init() => champVide() == Vrai
     init()
 
-    //getCase : StringxchampBataille -> Case
-    //retourne une case du champBataille
+    //getCase : StringxChampsBataille -> Case
+    //retourne une case du champsBAtaille
     //donnee : le nom de la case voulu
     func getCase(nom : String)->Case
 
-    //getCarte : StringxchampBataille -> Carte
-    //retourne la carte du champBataille qui est à la position passée en paramètre
+    //getCarte : StringxChampsBataille -> Carte
+    //retourne la carte du champsBataille qui est à la position passée en paramètre
     //donnee : une position
     //precondition : position € {F1,F2,F3,A1,A2,A3}
     //postcondition: init() => getCarte(position) == nil, insererCarte(case,carte) => getCarte(case) == carte
     func getCarte(position : String)->Carte?
 
-    //nbCarteChamp : champBataille -> Int
-    //retourne le nombre de carte présent sur le champBataille
-    //Post : si nbCarteChamp==0 => champVide() == Vrai
-    //Post : si nbCarteChamp>0 => champVide() == Faux
-    func nbCarteChamp() -> Int
+    //NbreCartechamp : ChampBataille -> Int
+    //retourne le nombre de cartes présentes sur le ChampBataille
+    //Post : si champVide() == Vrai => NbreCarteChamp==0
+    //Post : si champVide() == Faux => NbreCartechamp>0
+    func NbreCarteChamp() -> Int
 
-    //NbreCarteDefensechamp : champBataille -> Int
-    //retourne le nombre de carte présent sur le champBataille
-    //Post : si NbreCarteDefensechamp>0 => champVide() == Faux
-    func NbreCarteDefensechamp() -> Int
+    //NbreCarteDefensechamp : ChampBataille -> Int
+    //retourne le nombre de cartes EN MODE DEFENSE présentes sur le ChampBataille
+    //Post : si champVide() == Faux => NbreCarteDefensechamp>0
+    func NbreCarteDefenseChamp() -> Int
 
-    //caseAtteignable : champBataillexCasexCasexString -> Bool
+    //caseAtteignable : ChampsBataillexCasexCasexString -> Bool
     //retourne vrai si la CaseArr de l'adversaire est atteignable par la carte de nom nomCarte placée en caseDep, faux sinon
     //Precondition : caseDep et caseArr € {F1,F2,F3,A1,A2,A3}
     //Precondition : nomCarte € {Roi, Archer, Garde, Soldat}
     func caseAtteignable(caseDep : Case, caseArr : Case, nomCarte : String) -> Bool
 
-    //ChampVide : champBataille -> Bool
-    //retourne un vrai si le champBataille est vide, faux sinon
+    //ChampVide : ChampBataille -> Bool
+    //retourne un vrai si le ChampBataille est vide, faux sinon
     func champVide() -> Bool
 
-    //insererCarte : CHampBataille x Case x Carte-> champBataille
+    //insererCarte : CHampBataille x Case x Carte-> ChampBataille
     //insère une carte sur la case passée en paramètre du champs de bataille
     //donnee : une case et une carte
-    //precondition : la case appartient au ChampBAtaille
+    //precondition : la case appartient à {F1,F2,F3,A1,A2,A3}
     //precondition : la case est vide
     //postcondittion : champVide==False
     @discardableResult
     mutating func insererCarte(cas : Case, carte : Carte)->Self
 
-    //redresserCarte : CHampBataille -> champBataille
+    //redresserCarte : CHampBataille -> ChampBataille
     //met toutes les cartes présentes sur le CB en etat de défense
     //precondition : champVide()==False
     @discardableResult
     mutating func redresserCarte()->Self
 
-    //makeIterator : champBataille -> IteratorCB
+    //makeIterator : ChampBataille -> IteratorCB
     //Crée un itérateur sur la collection pour la parcourir dans l'ordre des Cases qui la composent
     func makeIterator() -> IteratorCB
 }

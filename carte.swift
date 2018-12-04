@@ -2,7 +2,12 @@
 protocol Carte {
     //init: -> Carte
     //Création d'une carte initialisée avec un nom, une valeur d'attaque, de défense, une position sur le champBataille et un Emplacement sur le Plateau par defaut
-    init()//plusieurs créations en fonction du type de carte pour éviter de devoir changer les valeurs pour chaque carte ?
+    init()
+
+    //init: -> Carte
+    //Création d'une carte initialisée avec une valeur de nom, d'attaque, de défense et un etat passées en parametre
+    //on mettra le reste par defaut
+    init(nvNom : String, nvDefense : Int, nvAttaque : Int, nvEtat : Bool, nvPos : String?)
 
     //getNom : Carte -> String
     //retourne le nom de la Carte (le nom correspond au type de carte, càd Archer, Soldat, Garde, Roi)

@@ -1,7 +1,6 @@
 func getNomTest() -> Int{
     var retourTest : Int = 0
-    var emplacementTest : Emplacement = Emplacement()
-    var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 5, nvEtat : false, nvPos : "F2", nvEmplacement : emplacementTest)
+    var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 5, nvEtat : false, nvPos : "F2", nvEmplacement : 0)
     let r : String = carteTest.getNom()
     if r != "Archer"{
         print("le nom de la Carte est mal initialise ou getNom recupere mal son nom")
@@ -15,8 +14,7 @@ func getNomTest() -> Int{
 
 func getAttaqueTest() -> Int{
     var retourTest : Int = 0
-    var emplacementTest : Emplacement = Emplacement()
-    var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 5, nvEtat : false, nvPos : "F2", nvEmplacement : emplacementTest)
+    var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 5, nvEtat : false, nvPos : "F2", nvEmplacement : 0)
     let r : Int = carteTest.getAttaque()
     if r != 5{
         print("l'attaque de la Carte est mal initialisee ou getPosition recupere mal son nom")
@@ -39,8 +37,7 @@ func getAttaqueTest() -> Int{
 
 func setAttaqueTest() -> Int{
     var retourTest : Int = 0
-    var emplacementTest : Emplacement = Emplacement()
-    var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 5, nvEtat : false, nvPos : "F2", nvEmplacement : emplacementTest)
+    var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 5, nvEtat : false, nvPos : "F2", nvEmplacement : 0)
     var nvAttaque : Int = -1
     do{
         try carteTest.setAttaque(nvAttaque : nvAttaque)
@@ -73,8 +70,7 @@ func setAttaqueTest() -> Int{
 
 func getDefenseTest() -> Int{
     var retourTest : Int = 0
-    var emplacementTest : Emplacement = Emplacement()
-    var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 5, nvEtat : false, nvPos : "F2", nvEmplacement : emplacementTest)
+    var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 5, nvEtat : false, nvPos : "F2", nvEmplacement : 0)
     let r : Int = carteTest.getDefense()
     if r != 10{
         print("la defense de la Carte est mal initialisee ou getDefense recupere mal sa valeur")
@@ -88,8 +84,7 @@ func getDefenseTest() -> Int{
 
 func getPositionTest() -> Int{
     var retourTest : Int = 0
-    var emplacementTest : Emplacement = Emplacement()
-    var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 5, nvEtat : false, nvPos : "F2", nvEmplacement : emplacementTest)
+    var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 5, nvEtat : false, nvPos : "F2", nvEmplacement : 0)
     let r : String? = carteTest.getPosition()
     if r != "F2"{
         print("la position de la Carte est mal initialisee ou getPosition recupere mal son nom")
@@ -112,8 +107,7 @@ func getPositionTest() -> Int{
 
 func setPositionTest() -> Int{
     var retourTest : Int = 0
-    var emplacementTest : Emplacement = Emplacement()
-    var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 5, nvEtat : false, nvPos : "F2", nvEmplacement : emplacementTest)
+    var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 5, nvEtat : false, nvPos : "F2", nvEmplacement : 0)
     var nvPos : String? = "A6"
     do{
         try carteTest.setPosition(nvPos : nvPos)
@@ -146,8 +140,7 @@ func setPositionTest() -> Int{
 
 func getEtatCarteTest() -> Int{
     var retourTest : Int = 0
-    var emplacementTest : Emplacement = Emplacement()
-    var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 5, nvEtat : false, nvPos : "F2", nvEmplacement : emplacementTest)
+    var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 5, nvEtat : false, nvPos : "F2", nvEmplacement : 0)
     let r : Bool? = carteTest.getEtatCarte()
     if r != false{
         print("l'etat de la Carte est mal initialise ou getEtatCarte recupere mal l'etat")
@@ -170,8 +163,7 @@ func getEtatCarteTest() -> Int{
 
 func setEtatCarteTest() -> Int{
     var retourTest : Int = 0
-    var emplacementTest : Emplacement = Emplacement()
-    var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 5, nvEtat : false, nvPos : "F2", nvEmplacement : emplacementTest)
+    var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 5, nvEtat : false, nvPos : "F2", nvEmplacement : 0)
     var nvEtat : Bool? = nil
     let r = carteTest.setEtatCarte(nvEtat : nvEtat).getEtatCarte()
     if r != nvEtat{
@@ -195,10 +187,9 @@ func setEtatCarteTest() -> Int{
 
 func getEmplacementCarteTest() -> Int{
     var retourTest : Int = 0
-    var emplacementTest : Emplacement = Emplacement()
-    var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 5, nvEtat : false, nvPos : "F2", nvEmplacement : emplacementTest)
-    let r : Emplacement = carteTest.getEmplacementCarte()
-    if r != emplacementTest{
+    var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 5, nvEtat : false, nvPos : "F2", nvEmplacement : 0)
+    let r : Int? = carteTest.getEmplacementCarte()
+    if r != 0{
         print("l'Emplacement de la Carte est mal initialise ou getEmplacementCarte recupere mal l'Emplacement")
         retourTest += 1
     }
@@ -210,10 +201,8 @@ func getEmplacementCarteTest() -> Int{
 
 func setEmplacementCarteTest() -> Int{
     var retourTest : Int = 0
-    var emplacementTest : Emplacement = Emplacement()
-    var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 5, nvEtat : false, nvPos : "F2", nvEmplacement : emplacementTest)
-    var nvEmplacement : Emplacement = Emplacement()
-    nvEmplacement.setEmplacement(newEmplacement : nil)
+    var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 5, nvEtat : false, nvPos : "F2", nvEmplacement : 0)
+    var nvEmplacement : Int? = nil
     let r = carteTest.setEmplacementCarte(nvEmplacement : nvEmplacement).getEmplacementCarte()
     if r != nvEmplacement{
         print("setEmplacementCarte ne modifie pas correctement l'Emplacement de la Carte lorsqu'il est set à Vide")
@@ -222,7 +211,7 @@ func setEmplacementCarteTest() -> Int{
     else{
         print("setEmplacementCarte modifie correctement l'Emplacement de la Carte lorsqu'il est set à Vide")
     }
-    nvEmplacement.setEmplacement(newEmplacement : 2)
+    nvEmplacement=2
     let r2 = carteTest.setEmplacementCarte(nvEmplacement : nvEmplacement).getEmplacementCarte()
     if r2 != nvEmplacement{
         print("Postcondition 'setEmplacementCarte(newEmplacement) => getEmplacementCarte() == newEmplacement' non respectee")

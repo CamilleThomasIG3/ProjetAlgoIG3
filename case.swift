@@ -1,8 +1,8 @@
 //Case représente une case du champBataille (ou Royaume ?) sur laquelle pourra ou non être présente une carte
 protocol Case {
     //init : -> Case
-    //Création d'une Case initialisée avec un état (vide)
-    init()
+    //Création d'une Case initialisée avec un état (vide) et un nom passé en paramètre
+    init(nom : String)
 
     //nom : Case -> String
     //retourne le nom de la case
