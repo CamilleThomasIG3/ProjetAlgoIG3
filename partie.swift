@@ -2,35 +2,24 @@
 protocol Partie {
     //init : -> Partie
     //création d'une partie, initialisée avec 2 joueurs (et chacun son roi) et un indicateur, motif et gagnant de fin de partie
-    //postconfition : getFin(partie)==false, getMotifFin(partie)==Vide, getGagnant=Vide , joueurCourant=="J1"
+    //postconfition : getFin(partie)==false, getMotifFin(partie)==Vide, getGagnant=Vide , joueurCourant().nom()=="J1", joueurAdverse().nom()=="J2"
     init()
-
-    //J1 : Partie -> Joueur
-    //Retourne le joueur 1 de la partie
-    //postcondition : J1.name()=="J1"
-    func J1() -> Joueur
-
-    //J2 : Partie -> Joueur
-    //Retourne le joueur 2 de la partie
-    //postcondition : J2.name()=="J2"
-    func J2() -> Joueur
 
     //joueurCourant : Partie -> Joueur
     //retourne le joueur qui est en train de joué pendant ce tour
-    //postcondition : joueurCourant()==J1() ou J2()
+    //postcondition : joueurCourant().nom()=="J1" ou "J2"
     func joueurCourant()->Joueur
 
     //joueurAdverse : Partie -> Joueur
     //retourne le joueur qui n'est pas en train de joué pendant ce tour
-    //postcondition : joueurCourant()==J1() ou J2()
-    //postcondition : joueurCourant()!=joueurAdverse
+    //postcondition : joueurCourant().nom()=="J1" ou "J2"
+    //postcondition : joueurCourant()!=joueurAdverse()
     func joueurAdverse()->Joueur
 
     //setJoueurCourant : PartiexJoueur->Partie
     //modifie le joueur courant avec celui en parametre
     //donnee : un Joueur
     //precondition : j=="J1" ou "J2"
-    //postconditon : joueurCourant(setJoueurCourant(j))==j
     @discardableResult
     mutating func setJoueurCourant(j : Joueur)->Self
 
@@ -38,7 +27,6 @@ protocol Partie {
     //modifie le joueur adverse avec celui en parametre
     //donnee : un Joueur
     //precondition : j=="J1" ou "J2"
-    //postconditon : joueurAdverse(setJoueurAdverse(j))==j
     @discardableResult
     mutating func setJoueurAdverse(j : Joueur)->Self
 
@@ -67,7 +55,6 @@ protocol Partie {
 
     //setGagnant : Partie x String -> Partie
     //modifie le gagnant de la partie avec celui passé en paramètre
-    //precondtion : nvGagnant != ""
     //postcondition : setGagnant(nvGagnant) => getGagnant == "J1" ou "J2" ou "egalité"
     @discardableResult
     mutating func setGagnant(nvGagnant : String) -> Partie
