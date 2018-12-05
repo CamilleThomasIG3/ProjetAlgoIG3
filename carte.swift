@@ -15,7 +15,7 @@ protocol Carte {
 
     //getAttaque : Carte -> Int
     //retourne la valeur d'attaque de la Carte
-    //precondition : carte soldat que si son emplacement est Main (car point depend du nombre de carte dans la main)
+    //precondition : carte soldat que si son emplacement est ChampBataille (car point depend du nombre de carte dans la main)
     func getAttaque() -> Int
 
     //getDefense : Carte -> Int
