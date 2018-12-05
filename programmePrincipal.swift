@@ -1,3 +1,11 @@
+import Carte
+import Case
+import Royaume
+import ChampBataille
+import Joueur
+import Pioche
+import Main
+import Partie
 //CB = Champs de Bataille (dans toute la suite)
 
 //demande un message à l'utilisateur et renvoie sa réponse
