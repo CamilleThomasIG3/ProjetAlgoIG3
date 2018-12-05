@@ -1,3 +1,8 @@
+import Main
+import ChampBataille
+import Pioche
+import Royaume 
+
 //Joueur est un ensemble comportant champBataille, Pioche , Royaume et Main
 protocol Joueur {
     //init : -> Joueur
