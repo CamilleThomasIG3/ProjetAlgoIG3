@@ -1,3 +1,4 @@
+import Carte
 //Pioche est une collection de cartes d’un joueur qui ne sont pas encore dans
 //le jeu (ni dans la main, le royaume, le champs de bataille, cimetière)
 protocol Pioche : Sequence {
