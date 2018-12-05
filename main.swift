@@ -34,7 +34,7 @@ protocol Main : Sequence{
 	//getCarte : StringxIntxIntxMain -> Carte
 	//retourne la carte avec le nom, la defense et attaque passés en parametre
 	//données : le nom de la carte, les points de defense, les points d'attaque
-	func getCarte(nom : String, defense : Int, attaque : Int?) -> Carte //pq attaque est Int? sert à quoi ? il faut passer l'emplacement en parametre et verifier qu'il soit egal à la main
+	func getCarte(nom : String, defense : Int, attaque : Int) -> Carte
 
 	//MainVide : Main -> Booleen
 	//Indique si la main est vide ou non
