@@ -223,4 +223,13 @@ func setEmplacementCarteTest() -> Int{
     return retourTest
 }
 
-//faire les tests des get où il ya des type? je sais plus pourquoi j'ai écrit ça mdr
+print("il y a "+getNomTest()+" erreurs dans la fonction getNom() du type Carte\n")
+print("il y a "+getAttaqueTest()+" erreurs dans la fonction getAttaque() du type Carte\n")
+print("il y a "+setAttaqueTest()+" erreurs dans la fonction setAttaque() du type Carte\n")
+print("il y a "+getDefenseTest()+" erreurs dans la fonction getDefense() du type Carte\n")
+print("il y a "+getPositionTest()+" erreurs dans la fonction getPosition() du type Carte\n")
+print("il y a "+setPositionTest()+" erreurs dans la fonction setPosition() du type Carte\n")
+print("il y a "+getEtatCarteTest()+" erreurs dans la fonction getEtatCarte() du type Carte\n")
+print("il y a "+setEtatCarteTest()+" erreurs dans la fonction setEtatCarte() du type Carte\n")
+print("il y a "+getEmplacementCarteTest()+" erreurs dans la fonction getEmplacementCarte() du type Carte\n")
+print("il y a "+setEmplacementCarteTest()+" erreurs dans la fonction setEmplacementCarte() du type Carte\n")
