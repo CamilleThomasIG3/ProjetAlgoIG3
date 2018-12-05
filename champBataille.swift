@@ -1,3 +1,6 @@
+import Carte
+import Case
+
 //ChampBataille représente, pour un joueur, son côté du champ de bataille. Il est composé de 6 positions
 protocol ChampBataille  : Sequence {
     associatedtype IteratorCB : IteratorProtocol
