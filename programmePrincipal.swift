@@ -244,35 +244,35 @@ func developpement(p : inout Partie)
 }
 
 //programme principale qui permet de jouer à Art Of War
-func main(){
-  var partie = Partie() //initialise la partie avec 2 joueurs et des conditions de fin
 
-  while !partie.getFin()//tant que la partie n'est pas terminée
+var partie = Partie() //initialise la partie avec 2 joueurs et des conditions de fin
+
+while !partie.getFin()//tant que la partie n'est pas terminée
+{
+  //préparation
+  preparation(p : &partie)
+
+  //action
+  var reponse : String = saisieUtilisateur(message : "choisissez une action : 1-ne rien faire  2-déployer une carte  3-attaquer l'adversaire")
+  if reponse=="2"//déployer
   {
-    //préparation
-    preparation(p : &partie)
-
-    //action
-    var reponse : String = saisieUtilisateur(message : "choisissez une action : 1-ne rien faire  2-déployer une carte  3-attaquer l'adversaire")
-    if reponse=="2"//déployer
-    {
-      deployer(p : &partie)
-    }
-    else if reponse=="3" //attaquer
-    {
-      attaquer(p : &Partie)
-    }
-    else if reponse!="1"  {print("Mauvaise réponse à la question posée tant pis vous ne pourrez pas effectuer d'action pour ce tour")}
-
-    //developpement
-    developpement(p : &partie)
-
-    //fin tour
-    print("Fin du tour de "+partie.joueurCourant().nom()+"au tour de "partie.joueurAdverse().nom()+"\n")
-    var temp : Joueur = partie.joueurCourant() //inverse les roles des joueurs
-    partie.setJoueurCourant(j : partie.joueurAdverse())
-    partie.setJoueurAdverse(j : temp)
+    deployer(p : &partie)
   }
-  //fin de partie
-  print("partie terminée par "+partie.getMotifFin()+" et le gagnant est"+partie.getGagnant()+"\n")
+  else if reponse=="3" //attaquer
+  {
+    attaquer(p : &Partie)
+  }
+  else if reponse!="1"  {print("Mauvaise réponse à la question posée tant pis vous ne pourrez pas effectuer d'action pour ce tour")}
+
+  //developpement
+  developpement(p : &partie)
+
+  //fin tour
+  print("Fin du tour de "+partie.joueurCourant().nom()+"au tour de "partie.joueurAdverse().nom()+"\n")
+  var temp : Joueur = partie.joueurCourant() //inverse les roles des joueurs
+  partie.setJoueurCourant(j : partie.joueurAdverse())
+  partie.setJoueurAdverse(j : temp)
 }
+//fin de partie
+print("partie terminée par "+partie.getMotifFin()+" et le gagnant est"+partie.getGagnant()+"\n")
+
