@@ -1,3 +1,4 @@
+import Joueur
 //Partie est un ensemble qui comprend 2 joueurs, et des conditions de fin de partie
 protocol Partie {
     //init : -> Partie
