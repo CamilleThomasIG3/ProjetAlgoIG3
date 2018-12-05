@@ -1,3 +1,4 @@
+import Carte
 //Main est une collection de cartes d'un joueur qui ne sont ni dans
 //la pioche, le royaume, le champs de bataille, cimetière
 protocol Main : Sequence{
