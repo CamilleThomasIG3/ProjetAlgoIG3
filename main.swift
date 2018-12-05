@@ -10,32 +10,6 @@ protocol Main : Sequence{
 	//précondition: la carte doit être un Roi (nom "Roi")
 	init(roi : Carte)
 
-	//AjouterMain : Main x Carte -> Main
-	//ajoute la carte passée en paramétre à la main
-	//postcondition : ajouterMain(carte) => nbreCartesMain()=nbreCartesMain()+1
-	@discardableResult
-	mutating func ajouterMain(carte : Carte)->Self
-
-	//AppartientMain : Main x Carte -> Bool
-	//Indique si la carte appartient à la main
-	//resultat : retourne vrai si la carte appartient à la main et faux si
-	//elle n'appartient pas à la main ou si la main est vide
-	//postcondition : ajouterMain(carte) => appartientMain(carte)==True => nbreCartesMain()>0
-	func appartientMain(carte : Carte)->Bool
-
-	//EnleverMain : Main x Carte -> Main
-	//supprime la carte passée en paramétre de la main
-	//precondition : appartientMain(carte)==True
-	//postcondition : enleverMain(carte) => nbreCartesMain()=nbreCartesMain()-1
-	//postcondition : enleverMain(carte) => appartientMain(carte) == false
-	@discardableResult
-	mutating func enleverMain(carte : Carte)->Self
-
-	//getCarte : StringxIntxIntxMain -> Carte
-	//retourne la carte avec le nom, la defense et attaque passés en parametre
-	//données : le nom de la carte, les points de defense, les points d'attaque
-	func getCarte(nom : String, defense : Int, attaque : Int) -> Carte
-
 	//MainVide : Main -> Booleen
 	//Indique si la main est vide ou non
 	//resultat : Retourne vrai si la main est vide et faux sinon
@@ -49,6 +23,32 @@ protocol Main : Sequence{
 	//postcondition : resultat entre 0 et 7 (car a partir de 7 cartes, le joueur
 	//doit obligatoirement en placer une dans le royaume)
 	func nbreCartesMain()->Int
+
+	//AppartientMain : Main x Carte -> Bool
+	//Indique si la carte appartient à la main
+	//resultat : retourne vrai si la carte appartient à la main et faux si
+	//elle n'appartient pas à la main ou si la main est vide
+	//postcondition : ajouterMain(carte) => appartientMain(carte)==True => nbreCartesMain()>0
+	func appartientMain(carte : Carte)->Bool
+
+	//AjouterMain : Main x Carte -> Main
+	//ajoute la carte passée en paramétre à la main
+	//postcondition : ajouterMain(carte) => nbreCartesMain()=nbreCartesMain()+1
+	@discardableResult
+	mutating func ajouterMain(carte : Carte)->Self
+	
+	//EnleverMain : Main x Carte -> Main
+	//supprime la carte passée en paramétre de la main
+	//precondition : appartientMain(carte)==True
+	//postcondition : enleverMain(carte) => nbreCartesMain()=nbreCartesMain()-1
+	//postcondition : enleverMain(carte) => appartientMain(carte) == false
+	@discardableResult
+	mutating func enleverMain(carte : Carte)->Self
+
+	//getCarte : StringxIntxIntxMain -> Carte
+	//retourne la carte avec le nom, la defense et attaque passés en parametre
+	//données : le nom de la carte, les points de defense, les points d'attaque
+	func getCarte(nom : String, defense : Int, attaque : Int) -> Carte
 
 	//makeIterator : Main -> IteratorMain
 	//créer un itérateur sur la collection pour pouvoir la parcourir de la carte la
