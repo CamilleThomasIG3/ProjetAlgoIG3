@@ -134,11 +134,11 @@ func enleverMainTest() -> Int{
     mainTest.enleverMain(carte : roiTest)
     do{
         try mainTest.enleverMain(carte : roiTest)
-        print("precondition 'nbreCartesMain >= 0' non respectee")
+        print("precondition 'nbreCartesMain > 0' non respectee")
         retourTest += 1
     }
     catch{
-        print("precondition 'nbreCartesMain >= 0' respectee")
+        print("precondition 'nbreCartesMain > 0' respectee")
     }
     var mainTest2 : Main = Main(roi : roiTest)
     var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 8, nvEtat : false, nvPos : nil)
@@ -151,16 +151,14 @@ func enleverMainTest() -> Int{
     catch{
         print("precondition 'appartientMain(carte)==true' respectee")
     }
-    var roiTest : Carte = Carte(nvNom : "Roi", nvDefense : 10, nvAttaque : 8, nvEtat : false, nvPos : nil)
-    var mainTest : Main = Main(roi : roiTest)
-    mainTest.ajouterMain(carte : carteTest).ajouterMain(carte : carteTest2).ajouterMain(carte : carteTest3)
-    let r : Int = mainTest.nbreCartesMain()
-    if r != 4{
-        print("les cartes ne sont pas ajoutees correctement a la Main")
+    mainTest.ajouterMain(carte : roiTest).ajouterMain(carte : carteTest)
+    let r : Int = mainTest.enleverMain(carte : roiTest).nbreCartesMain()
+    if r != 1{
+        print("les cartes ne sont pas correctement enlevees de la Main")
         retourTest += 1
     }
     else{
-        print("les cartes sont ajoutees correctement a la Main")
+        print("les cartes sont correctement enlevees de la Main")
     }
     return retourTest
 }
