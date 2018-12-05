@@ -60,12 +60,108 @@ func nbreCartesMainTest() -> Int{
         print("nbreCartesMain() retourne la bonne valeur lorsque des cartes sont ajourtees a la Main")
     }
     let r2 : Int = mainTest.enleverMain(carte : roiTest).enleverMain(carte : carteTest).nbreCartesMain()
-    if r2 != true{
-        print("mainVide() ne retourne pas la bonne valeur lorsque la Main est videe")
+    if r2 != 0{
+        print("nbreCartesMain() ne retourne pas la bonne valeur lorsque la Main est videe")
         retourTest += 1
     }
     else{
-        print("mainVide() retourne la bonne valeur lorsque la Main est videe")
+        print("nbreCartesMain() retourne la bonne valeur lorsque la Main est videe")
     }
     return retourTest
 }
+
+func appartientMainTest() -> Int{
+    var retourTest : Int = 0
+    var roiTest : Carte = Carte(nvNom : "Roi", nvDefense : 10, nvAttaque : 8, nvEtat : false, nvPos : "F1")
+    var mainTest : Main = Main(roi : roiTest)
+    let r : Bool = mainTest.appartientMain(carte : roiTest)
+    if !r {
+        print("appartientMain(carte) ne renvoie pas vrai lorsque carte est dans la main")
+        retourTest += 1
+    }
+    else{
+        print("appartientMain(carte)renvoie vrai lorsque carte est dans la main")
+    }
+    let r2 : Bool = mainTest.enleverMain(carte : roiTest).appartientMain(carte : roiTest)
+    if r2 {
+        print("appartientMain() ne retourne pas faux lorsqu'une carte est enlevee de la Main")
+        retourTest += 1
+    }
+    else{
+        print("appartientMain() renvoie bien faux lorsqu'une carte est enlevee de la Main")
+    }
+    return retourTest
+}
+
+func ajouterMainTest() -> Int{
+    var retourTest : Int = 0
+    var roiTest : Carte = Carte(nvNom : "Roi", nvDefense : 10, nvAttaque : 8, nvEtat : false, nvPos : nil)
+    var mainTest : Main = Main(roi : roiTest)
+    var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 8, nvEtat : false, nvPos : nil)
+    var carteTest2 : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 8, nvEtat : false, nvPos : nil)
+    var carteTest3 : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 8, nvEtat : false, nvPos : nil)
+    var carteTest4 : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 8, nvEtat : false, nvPos : nil)
+    var carteTest5 : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 8, nvEtat : false, nvPos : nil)
+    var carteTest6 : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 8, nvEtat : false, nvPos : nil)
+    var carteTest7 : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 8, nvEtat : false, nvPos : nil)
+    mainTest.ajouterMain(carte : carteTest).ajouterMain(carte : carteTest2).ajouterMain(carte : carteTest3).ajouterMain(carte : carteTest4).ajouterMain(carte : carteTest5).ajouterMain(carte : carteTest6)
+    do{
+        try mainTest.ajouterMain(carte : carteTest7)
+        print("precondition 'nbreCartesMain < 7' non respectee")
+        retourTest += 1
+    }
+    catch{
+        print("precondition 'nbreCartesMain < 7' non respectee")
+    }
+    var roiTest : Carte = Carte(nvNom : "Roi", nvDefense : 10, nvAttaque : 8, nvEtat : false, nvPos : nil)
+    var mainTest : Main = Main(roi : roiTest)
+    mainTest.ajouterMain(carte : carteTest).ajouterMain(carte : carteTest2).ajouterMain(carte : carteTest3)
+    let r : Int = mainTest.nbreCartesMain()
+    if r != 4{
+        print("les cartes ne sont pas ajoutees correctement a la Main")
+        retourTest += 1
+    }
+    else{
+        print("les cartes sont ajoutees correctement a la Main")
+    }
+    return retourTest
+}
+
+func enleverMainTest() -> Int{
+    var retourTest : Int = 0
+    var roiTest : Carte = Carte(nvNom : "Roi", nvDefense : 10, nvAttaque : 8, nvEtat : false, nvPos : nil)
+    var mainTest : Main = Main(roi : roiTest)
+    mainTest.enleverMain(carte : roiTest)
+    do{
+        try mainTest.enleverMain(carte : roiTest)
+        print("precondition 'nbreCartesMain >= 0' non respectee")
+        retourTest += 1
+    }
+    catch{
+        print("precondition 'nbreCartesMain >= 0' respectee")
+    }
+    var mainTest2 : Main = Main(roi : roiTest)
+    var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 8, nvEtat : false, nvPos : nil)
+    mainTest2.enleverMain(carte : carteTest)
+    do{
+        try mainTest.enleverMain(carte : carteTest)
+        print("precondition 'appartientMain(carte)==true' non respectee")
+        retourTest += 1
+    }
+    catch{
+        print("precondition 'appartientMain(carte)==true' respectee")
+    }
+    var roiTest : Carte = Carte(nvNom : "Roi", nvDefense : 10, nvAttaque : 8, nvEtat : false, nvPos : nil)
+    var mainTest : Main = Main(roi : roiTest)
+    mainTest.ajouterMain(carte : carteTest).ajouterMain(carte : carteTest2).ajouterMain(carte : carteTest3)
+    let r : Int = mainTest.nbreCartesMain()
+    if r != 4{
+        print("les cartes ne sont pas ajoutees correctement a la Main")
+        retourTest += 1
+    }
+    else{
+        print("les cartes sont ajoutees correctement a la Main")
+    }
+    return retourTest
+}
+
