@@ -163,3 +163,9 @@ func enleverMainTest() -> Int{
     return retourTest
 }
 
+print("il y a "+initTest()+" erreurs dans la fonction init() du type Carte\n")
+print("il y a "+mainVideTest()+" erreurs dans la fonction mainVide() du type Carte\n")
+print("il y a "+nbreCartesMainTest()+" erreurs dans la fonction nbreCartesMain() du type Carte\n")
+print("il y a "+appartientMainTest()+" erreurs dans la fonction appartientMain() du type Carte\n")
+print("il y a "+ajouterMainTest()+" erreurs dans la fonction ajouterMain() du type Carte\n")
+print("il y a "+enleverMainTest()+" erreurs dans la fonction enleverMain() du type Carte\n")
