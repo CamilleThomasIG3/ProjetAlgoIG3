@@ -33,6 +33,7 @@ protocol Main : Sequence{
 
 	//AjouterMain : Main x Carte -> Main
 	//ajoute la carte passée en paramétre à la main
+	//precondition : nbreCartesMain() < 7
 	//postcondition : ajouterMain(carte) => nbreCartesMain()=nbreCartesMain()+1
 	@discardableResult
 	mutating func ajouterMain(carte : Carte)->Self
