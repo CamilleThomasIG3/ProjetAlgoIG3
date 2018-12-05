@@ -1,3 +1,4 @@
+import Carte
 //Royaume est une collection de cartes d'un joueur qui sont ni dans la main,
 //la pioche, le cimetière, le champs de bataille
 protocol Royaume : Sequence {
