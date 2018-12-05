@@ -40,7 +40,7 @@ protocol Main : Sequence{
 	
 	//EnleverMain : Main x Carte -> Main
 	//supprime la carte passée en paramétre de la main
-	//precondition : appartientMain(carte)==True
+	//precondition : appartientMain(carte)==True , nbreCartesMain > 0
 	//postcondition : enleverMain(carte) => nbreCartesMain()=nbreCartesMain()-1
 	//postcondition : enleverMain(carte) => appartientMain(carte) == false
 	@discardableResult
