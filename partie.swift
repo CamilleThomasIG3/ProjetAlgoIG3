@@ -19,14 +19,14 @@ protocol Partie {
     //setJoueurCourant : PartiexJoueur->Partie
     //modifie le joueur courant avec celui en parametre
     //donnee : un Joueur
-    //precondition : j=="J1" ou "J2"
+    //precondition : j.nom()=="J1" ou "J2"
     @discardableResult
     mutating func setJoueurCourant(j : Joueur)->Self
 
     //setJoueurAdverse : PartiexJoueur->Partie
     //modifie le joueur adverse avec celui en parametre
     //donnee : un Joueur
-    //precondition : j=="J1" ou "J2"
+    //precondition : j.nom()=="J1" ou "J2"
     @discardableResult
     mutating func setJoueurAdverse(j : Joueur)->Self
 

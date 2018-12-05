@@ -9,6 +9,12 @@ protocol Joueur {
     //postcondition : nom(joueur)=="J1" ou "J2"
     func nom() -> String
 
+    //setNom : JoueurxString -> Joueur
+    //modifie le nom du joueur
+    //precondition : nom(joueur)=="J1" ou "J2"
+    @discardableResult()
+    mutating func setNom(nvNom : String) -> Joueur
+
     //champBataille : Joueur -> champBataille
     //retourne le champBataille du joueur
     func champBataille() -> champBataille

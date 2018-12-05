@@ -49,13 +49,15 @@ func joueurCourantTest() -> Int{
 func setJoueurCourantTest() -> Int{
     var retourTest : Int = 0
     var partieTest : Partie = Partie()
-    partieTest.getJoueurCourant().setJoueurCourant(j : "J2")
-    if partieTest.getJoueurCourant() != "J2"{
-        print("la fonction setJoueurCourant() modifie mal le Joueur Courant de la partie")
+    var joueur : Joueur = Joueur()
+    joueur.setNom(nvNom : "J3")
+    do{
+        try partieTest.setJoueurCourant(j : joueur)
+        print("precondition 'nom(j)=="J1" ou "J2"' non respectee")
         retourTest += 1
     }
-    else{
-        print("setJoueurCourant() modifie correctemement le Joueur Courant de la partie")
+    catch{
+        print("precondition 'nom(j)=="J1" ou "J2"' respectee")
     }
     return retourTest
 }
@@ -77,14 +79,15 @@ func joueurAdverseTest() -> Int{
 
 func setJoueurAdverseTest() -> Int{
     var retourTest : Int = 0
-    var partieTest : Partie = Partie()
-    partieTest.getJoueurAdverse().setJoueurAdverse(j : "J2")
-    if partieTest.getJoueurAdverse() != "J2"{
-        print("la fonction setJoueurAdverse() modifie mal le Joueur Adverse de la partie")
+    var joueur : Joueur = Joueur()
+    joueur.setNom(nvNom : "J3")
+    do{
+        try partieTest.setJoueurAdverse(j : joueur)
+        print("precondition 'nom(j)=="J1" ou "J2"' non respectee")
         retourTest += 1
     }
-    else{
-        print("setJoueurAdverse() modifie correctemement le Joueur Adverse de la partie")
+    catch{
+        print("precondition 'nom(j)=="J1" ou "J2"' respectee")
     }
     return retourTest
 }
@@ -106,41 +109,13 @@ func getGagnantTest() -> Int{
 func setGagnantTest() -> Int{
     var retourTest : Int = 0
     var partieTest : Partie = Partie()
-    partieTest.getGagnant().setGagnant(nvGagnant : "J1")
-    if partieTest.getGagnant() != "J1"{
-        print("la fonction setGagnant() modifie mal le gagnant de la partie")
+    do{
+        try partieTest.setGagnant(nvGagnant : "J3")
+        print("precondition 'nom(nvGagnant)=="J1" ou "J2"' non respectee")
         retourTest += 1
     }
-    else{
-        print("setGagnant() modifie correctemement le gagnant de la partie")
-    }
-    return retourTest
-}
-
-func setMotifFinTest() -> Int{
-    var retourTest : Int = 0
-    var partieTest : Partie = Partie()
-    partieTest.getMotifFin().setMotifFin(nvMotifFin : "circonscription")
-    if partieTest.getMotifFin() != "circonscription"{
-        print("la fonction setMotifFin() modifie mal le Motif Fin de la partie")
-        retourTest += 1
-    }
-    else{
-        print("setMotifFin() modifie correctemement le Motif Fin de la partie")
-    }
-    return retourTest
-}
-
-func setFinTest() -> Int{
-    var retourTest : Int = 0
-    var partieTest : Partie = Partie()
-    partieTest.getFin().setFin(nvFin : true)
-    if !partieTest.getFin() {
-        print("la fonction setFin() modifie mal la fin de la partie")
-        retourTest += 1
-    }
-    else{
-        print("setFin() modifie correctemement la fin de la partie")
+    catch{
+        print("precondition 'nom(nvGagnant)=="J1" ou "J2"' respectee")
     }
     return retourTest
 }
@@ -152,5 +127,3 @@ print("il y a "+joueurAdverseTest()+" erreurs dans la fonction joueurAdverse() d
 print("il y a "+setJoueurAdverseTest()+" erreurs dans la fonction setJoueurAdverse() du type Partie\n")
 print("il y a "+getGagnantTest()+" erreurs dans la fonction getGagnant() du type Partie\n")
 print("il y a "+setGagnantTest()+" erreurs dans la fonction setGagnant() du type Partie\n")
-print("il y a "+setMotifFinTest()+" erreurs dans la fonction setMotifFin() du type Partie\n")
-print("il y a "+setFinTest()+" erreurs dans la fonction setFin() du type Partie\n")

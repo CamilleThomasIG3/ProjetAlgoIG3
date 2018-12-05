@@ -12,4 +12,19 @@ func initTest() -> Int{
     return retourTest
 }
 
+func setNomTest() -> Int{
+    var retourTest : Int = 0
+    var joueurTest : Joueur = Joueur()
+    do{
+        try joueurTest.setNom(nvNom : "J")
+        print("precondition 'nom(joueur)=="J1" ou "J2"' non respectee")
+        retourTest += 1
+    }
+    catch{
+        print("precondition 'nom(joueur)=="J1" ou "J2"' respectee")
+    }
+    return retourTest
+}
+
 print("il y a "+initTest()+" erreurs dans la fonction init() du type Joueur\n")
+print("il y a "+setNomTest()+" erreurs dans la fonction setNom() du type Joueur\n")
