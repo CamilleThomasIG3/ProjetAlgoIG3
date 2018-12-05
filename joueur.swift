@@ -13,7 +13,7 @@ protocol Joueur {
     //modifie le nom du joueur
     //precondition : nom(joueur)=="J1" ou "J2"
     @discardableResult()
-    mutating func setNom(nvNom : String) -> Joueur
+    mutating func setNom(nvNom : String) -> Self
 
     //champBataille : Joueur -> champBataille
     //retourne le champBataille du joueur
