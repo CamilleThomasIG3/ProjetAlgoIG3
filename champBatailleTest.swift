@@ -220,3 +220,12 @@ func redresserCarteTest() -> Int {
   }
   return retourTest
 }
+
+print("il y a "+initTest()+" erreurs dans la fonction init() du type champBataille\n")
+print("il y a "+getCaseTest()+" erreurs dans la fonction getCase() du type champBataille\n")
+print("il y a "+getCarteTest()+" erreurs dans la fonction getCarte() du type champBataille\n")
+print("il y a "+nbreCarteChampTest()+" erreurs dans la fonction nbreCarteChamp() du type champBataille\n")
+print("il y a "+nbreCarteDefensechampTest()+" erreurs dans la fonction NbreCarteChampBataille() du type champBataille\n")
+print("il y a "+caseAtteignableTest()+" erreurs dans la fonction caseAtteignable() du type champBataille\n")
+print("il y a "+insererCarteTest()+" erreurs dans la fonction insererCarte() du type champBataille\n")
+print("il y a "+redresserCarteTest()+" erreurs dans la fonction redresserCarte() du type champBataille\n")
