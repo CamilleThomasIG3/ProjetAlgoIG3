@@ -21,11 +21,11 @@ protocol Pioche : Sequence {
 	@discardableResult
 	mutating func piocher()->Self
 
-	//AjouterPioche : Pioche -> Pioche
+	//AjouterPioche : PiochexCarte -> Pioche
 	//Rajoute une carte dans la pioche
 	//postcondition : taillePioche(piocher(carte))=taillePioche()+1>0
 	@discardableResult
-	mutating func ajouterPioche()->Self
+	mutating func ajouterPioche(c : Carte)->Self
 
 	//TaillePioche : Pioche-> Int
 	//retourne le nombre de cartes de la pioche
