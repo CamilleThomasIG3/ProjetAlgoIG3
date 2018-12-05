@@ -139,7 +139,7 @@ func mettreAuRoyaume(p : inout Partie)
 func attaquer(p : inout Partie)
 {
   var attaque : Bool = true //le joueur veut attaquer
-  while attaque && p.joueurCourant().champBataille().NbreCarteDefensechamp()!=0
+  while attaque && p.joueurCourant().champBataille().NbreCarteDefenseChamp()!=0
   //tant que le joueur veut attaquer et qu'il reste des cartes en mode defense sur son CB
   {
     for c in p.joueurCourant().champBataille() //parcours des cartes grace à l'iterateur de CB
@@ -212,7 +212,7 @@ func attaquer(p : inout Partie)
     {
       attaque = false
     }
-    if p.joueurCourant().champBataille().NbreCarteDefensechamp()==0{ print("Vous n'avez plus de carte pour attaquer\n")}
+    if p.joueurCourant().champBataille().NbreCarteDefenseChamp()==0{ print("Vous n'avez plus de carte pour attaquer\n")}
   }
 }
 
