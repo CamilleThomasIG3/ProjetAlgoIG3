@@ -53,6 +53,6 @@ func tailleRoyaumeTest() -> Int{
     return retourTest
 }
 
-print("il y a "+premierRoyaumeTest()+" erreurs dans la fonction premierRoyaume() du type pioche\n")
-print("il y a "+ajouterRoyaumeTest()+" erreurs dans la fonction ajouterRoyaume() du type pioche\n")
-print("il y a "+tailleRoyaumeTest()+" erreurs dans la fonction tailleRoyaume() du type pioche\n")
+print("il y a "+premierRoyaumeTest()+" erreurs dans la fonction premierRoyaume() du type Royaume\n")
+print("il y a "+ajouterRoyaumeTest()+" erreurs dans la fonction ajouterRoyaume() du type Royaume\n")
+print("il y a "+tailleRoyaumeTest()+" erreurs dans la fonction tailleRoyaume() du type Royaume\n")

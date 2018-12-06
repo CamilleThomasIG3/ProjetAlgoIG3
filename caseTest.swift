@@ -67,8 +67,8 @@ func modifierCaseTest() -> Int{
     }
     return retourTest
 }
-  
-print("il y a "+initTest()+" erreurs dans la fonction init() du type Carte\n")
-print("il y a "+nomTest()+" erreurs dans la fonction nom() du type Carte\n")
-print("il y a "+etatCaseTest()+" erreurs dans la fonction etatCase() du type Carte\n")
-print("il y a "+modifierCaseTest()+" erreurs dans la fonction modifierCase() du type Carte\n")
+
+print("il y a "+initTest()+" erreurs dans la fonction init() du type Case\n")
+print("il y a "+nomTest()+" erreurs dans la fonction nom() du type Case\n")
+print("il y a "+etatCaseTest()+" erreurs dans la fonction etatCase() du type Case\n")
+print("il y a "+modifierCaseTest()+" erreurs dans la fonction modifierCase() du type Case\n")

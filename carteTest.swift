@@ -202,6 +202,22 @@ func getEmplacementCarteTest() -> Int{
 func setEmplacementCarteTest() -> Int{
     var retourTest : Int = 0
     var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 5, nvEtat : false, nvPos : "F2", nvEmplacement : 0)
+    do{
+        try carteTest.setEmplacementCarte(nvEmplacement : -1)
+        print("Precondition 'nvEmplacement est l'une des valeurs valables pour Emplacement' non respectee")
+        retourTest += 1
+    }
+    catch{
+        print("Precondition 'nvEmplacement est l'une des valeurs valables pour Emplacement' respectee")
+    }
+    do{
+        try carteTest.setEmplacementCarte(nvEmplacement : 10)
+        print("Precondition 'nvEmplacement est l'une des valeurs valables pour Emplacement' non respectee")
+        retourTest += 1
+    }
+    catch{
+        print("Precondition 'nvEmplacement est l'une des valeurs valables pour Emplacement' respectee")
+    }
     var nvEmplacement : Int? = nil
     let r = carteTest.setEmplacementCarte(nvEmplacement : nvEmplacement).getEmplacementCarte()
     if r != nvEmplacement{
