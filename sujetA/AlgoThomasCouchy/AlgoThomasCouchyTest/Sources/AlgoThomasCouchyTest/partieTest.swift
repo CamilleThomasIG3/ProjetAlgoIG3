@@ -1,3 +1,5 @@
+import "AlgoThomasCouchyLibrary"
+
 func initTest() -> Int{
     var retourTest : Int = 0
     var partieTest : Partie = Partie()
@@ -53,11 +55,11 @@ func setJoueurCourantTest() -> Int{
     joueur.setNom(nvNom : "J3")
     do{
         try partieTest.setJoueurCourant(j : joueur)
-        print("precondition 'nom(j)=="J1" ou "J2"' non respectee")
+        print("precondition 'nom(j)==J1 ou J2' non respectee")
         retourTest += 1
     }
     catch{
-        print("precondition 'nom(j)=="J1" ou "J2"' respectee")
+        print("precondition 'nom(j)==J1 ou J2' respectee")
     }
     return retourTest
 }
@@ -83,11 +85,11 @@ func setJoueurAdverseTest() -> Int{
     joueur.setNom(nvNom : "J3")
     do{
         try partieTest.setJoueurAdverse(j : joueur)
-        print("precondition 'nom(j)=="J1" ou "J2"' non respectee")
+        print("precondition 'nom(j)==J1 ou J2' non respectee")
         retourTest += 1
     }
     catch{
-        print("precondition 'nom(j)=="J1" ou "J2"' respectee")
+        print("precondition 'nom(j)==J1 ou J2' respectee")
     }
     return retourTest
 }
@@ -111,11 +113,11 @@ func setGagnantTest() -> Int{
     var partieTest : Partie = Partie()
     do{
         try partieTest.setGagnant(nvGagnant : "J3")
-        print("precondition 'nom(nvGagnant)=="J1" ou "J2"' non respectee")
+        print("precondition 'nom(nvGagnant)==J1 ou J2' non respectee")
         retourTest += 1
     }
     catch{
-        print("precondition 'nom(nvGagnant)=="J1" ou "J2"' respectee")
+        print("precondition 'nom(nvGagnant)==J1 ou J2' respectee")
     }
     return retourTest
 }

@@ -1,4 +1,4 @@
-import AlgoThomasCouchyLibrary
+import "AlgoThomasCouchyLibrary"
 //CB = Champs de Bataille (dans toute la suite)
 
 //demande un message à l'utilisateur et renvoie sa réponse
@@ -66,9 +66,15 @@ func deployer(p : inout Partie)
     {
       afficherCarte(c : c)
     }
-    var rep1 : String = saisieUtilisateur(message : "Quelle nom de carte voulez-vous mettre sur votre champs de Bataille ?")
-    var rep2 : String = saisieUtilisateur(message : "avec quel point de défense ?")
-    var rep3 : String = saisieUtilisateur(message : "avec quel point d'attaque ?")
+    var rep1 : String
+    var rep2 : String
+    var rep3 : String
+    repeat
+    {
+      rep1 = saisieUtilisateur(message : "Quelle nom de carte voulez-vous mettre sur votre champs de Bataille ?")
+      rep2 = saisieUtilisateur(message : "avec quel point de défense ?")
+      rep3 = saisieUtilisateur(message : "avec quel point d'attaque ?")
+    }while !p.joueurCourant().main().appartientMain(carte : p.joueurCourant().main().getCarte(nom : rep1, defense : Int(rep2), attaque : Int(rep3)))
     var rep4 : String
     repeat
     {
@@ -105,7 +111,11 @@ func testConscription(p : inout Partie)
       carteADeploye.setEmplacement(newEmplacement : 3) //Emplacement MAJ (3 : CB)
       print("conscription du joueur : "+p.joueurAdverse().nom()+"une carte de votre royaume rejoins votre champs de bataille\n")
       print("Voici la carte qui sera placer sur votre champs de Bataille : "+carteADeploye+"\n")
-      var rep : String = saisieUtilisateur(message : "En quelle case voulez vous la mettre F1,F2,F3,A1,A2,A3 ?")
+      var rep : String
+      repeat
+      {
+        rep = saisieUtilisateur(message : "En quelle case voulez vous la mettre F1,F2,F3,A1,A2,A3 ?")
+      }while !p.joueurAdverse().champBataille().getCase(nom : rep).etatCase()
       p.joueurAdverse().champBataille().insererCarte(cas : p.joueurAdverse().champBataille().getCase(nom : rep) ,carte : carteADeploye) //insere carte sur CB
       p.joueurAdverse().royaume().enleverRoyaume() //enleve carte du royaume
     }
@@ -126,9 +136,15 @@ func mettreAuRoyaume(p : inout Partie)
   {
     afficherCarte(c : c)
   }
-  var rep1 : String = saisieUtilisateur(message : "Quelle nom de carte voulez-vous mettre sur votre Royaume ?")
-  var rep2 : String = saisieUtilisateur(message : "avec quel point de défense ?")
-  var rep3 : String = saisieUtilisateur(message : "avec quel point d'attaque ?")
+  var rep1 : String
+  var rep2 : String
+  var rep3 : String
+  repeat
+  {
+    rep1 = saisieUtilisateur(message : "Quelle nom de carte voulez-vous mettre sur votre Royaume ?")
+    rep2 = saisieUtilisateur(message : "avec quel point de défense ?")
+    rep3 = saisieUtilisateur(message : "avec quel point d'attaque ?")
+  }while !p.joueurCourant().main().appartientMain(carte : p.joueurCourant().main().getCarte(nom : rep1, defense : Int(rep2), attaque : Int(rep3)))
   var carte : Carte = p.joueurCourant().main().getCarte(nom : rep1, defense : Int(rep2), attaque : Int(rep3)) //carte a ajouter au royaume
   p.joueurCourant().royaume().ajouterRoyaume(carte : carte) //ajoute la carte au royaume
   p.joueurCourant().main().carte.getEmplacement().setEmplacement(newEmplacement : 2)//change l'emplacement de la carte

@@ -1,0 +1,46 @@
+Unquera Lauren – Bourrat Mathis : Remarques spécifications
+Thomas Camille – Couchy Alexander-lee : auteurs des spécifications Art Of War
+
+Remarques spécifications Art Of War
+• Carte
+  Set defense
+  //Réponse :
+  Init sans paramètre(par défaut) pas nécessaire
+  //Réponse :
+
+• Pioche
+  Pas besoin de ajouter carte
+  //Réponse : Nous sommes d'accord (modifié)
+  Pas besoin de taille pioche
+  //Réponse : Nous sommes d'accord (modifié)
+
+• La main
+  Initialisation pas seulement avec le roi mais aussi les 3 autres cartes
+  //Réponse : Nous sommes d'accord (modifié)
+
+• Royaume
+  Combien de citoyens par unité
+  //Réponse :
+  Changer premiere carte du royaume
+  //Réponse :
+
+• Set/get -> var ? (facultatif)
+  //Réponse : Nous avons préféré laisser notre version (set/get)
+
+• Champs de bataille + main
+  Probleme avec carte : faire un choix entre accéder aux cases a partir des cartes ou
+accéder aux cartes a partir des cases.
+  //Réponse :
+
+• Champs de bataille
+  A quoi sert nbCartesDefenseChamp ?
+  //Réponse : Il sert à savoir si il reste encore des cartes en mode Defense sur le plateau
+  //et donc si le joueur peut encore attaquer
+
+• Main
+  Faire les verifications, exemple :
+verifier que la carte saisie est bien possédée par le joueur
+  //Réponse : Nous sommes d'accord (modifié)
+  remarque (facultatif) : & (type reference...) pas faux mais contraignant...
+  //Réponse : Nous avons préféré laisser notre version
+

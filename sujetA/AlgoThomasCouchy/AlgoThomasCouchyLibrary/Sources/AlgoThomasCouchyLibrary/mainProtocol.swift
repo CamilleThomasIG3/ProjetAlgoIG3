@@ -7,8 +7,9 @@ public protocol MainProtocol : Sequence{
 	associatedtype Carte : CarteProtocol
 
 	//init : -> Main
-	//créer une main avec une seule carte : le roi du joueur (les joueurs ont des rois différents)
-	//précondition: la carte doit être un Roi (nom "Roi")
+	//créer une main avec une carte : le roi du joueur (les joueurs ont des rois différents) et
+	//3 autres cartes piochées au hasard
+	//précondition: la carte passée en paramètre doit être un Roi (nom "Roi")
 	init(roi : Carte) throws
 
 	//MainVide : Main -> Booleen

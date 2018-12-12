@@ -1,3 +1,5 @@
+import "AlgoThomasCouchyLibrary"
+
 func initTest() -> Int{
     var retourTest : Int = 0
     var carteTest : Carte = Carte(nvNom : "Archer", nvDefense : 10, nvAttaque : 8, nvEtat : false, nvPos : "F1")

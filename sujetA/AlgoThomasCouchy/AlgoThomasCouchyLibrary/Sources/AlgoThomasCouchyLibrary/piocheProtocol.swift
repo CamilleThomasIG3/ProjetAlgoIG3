@@ -22,18 +22,6 @@ public protocol PiocheProtocol : Sequence {
 	@discardableResult
 	mutating func piocher() throws -> Self
 
-	//AjouterPioche : PiochexCarte -> Pioche
-	//Rajoute une carte dans la pioche
-	//postcondition : taillePioche(piocher(carte))=taillePioche()+1>0
-	@discardableResult
-	mutating func ajouterPioche(c : Carte)->Self
-
-	//TaillePioche : Pioche-> Int
-	//retourne le nombre de cartes de la pioche
-	//resultat : un entier
-	//postcondition : entier retourné entre 0 et 20
-	func taillePioche()->Int
-
 	//PiocheVide : Pioche -> Booleen
 	//Indique si la pioche est vide ou non
 	//resultat : Retourne vrai si la pioche est vide et faux sinon

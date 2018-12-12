@@ -1,3 +1,5 @@
+import "AlgoThomasCouchyLibrary"
+
 func initTest() -> Int{
   var retourTest : Int = 0
   var caseTest : Case = Case(nom : "A1")

@@ -1,3 +1,5 @@
+import "AlgoThomasCouchyLibrary"
+
 func premierRoyaumeTest() -> Int{
     var retourTest : Int = 0
     var royaumeTest : Royaume = Royaume()
