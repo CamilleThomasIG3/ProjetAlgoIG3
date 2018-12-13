@@ -16,7 +16,7 @@ func saisieUtilisateur(message : String)->String
 //donnee : une carte
 func afficherCarte(c : Carte)
 {
-  print("carte "+c.nom()+" de défense "+c.defense()+" et d'attaque "+c.attaque()+"\n")
+  print("carte "+c.getNom()+" de défense en mode attaque"+c.getDefenseOff()+" et d'attaque "+c.getAttaque()+"\n")
 }
 
 //affiche une carte en donnant son nom, ses points de defense et d'attaque et sa position sur le CB
@@ -24,7 +24,7 @@ func afficherCarte(c : Carte)
 //precondition : c.getEmplacement().getEmplacement()==3 (3=CB)
 func afficherCarteCB(c : Carte)
 {
-  print("carte "+c.nom()+" de défense "+c.defense()+" et d'attaque "+c.attaque()+"et en case "+c.getPosition()+"\n")
+  print("carte "+c.getNom()+" de défense en mode attaque"+c.getDefenseOff()+" et d'attaque "+c.getAttaque()+"et en case "+c.getPosition()+"\n")
 }
 
 //prepare un tour en faisant piocher le joueur et en redressant ses cartes qui etaient en attaque sur son CB
@@ -187,7 +187,12 @@ func attaquer(p : inout Partie)
     {
       p.joueurCourant().champBataille().getCarte(position : rep1).modifierEtatCarte(newEtat : true) //carte en position attaque
       var nbAttaque : Int = p.joueurCourant().champBataille().getCarte(position : rep1).getAttaque() //nbre Attaque du joueur Courant
-      var nbDefense : Int = p.joueurAdverse().champBataille().getCarte(position : rep2).getDefense() //nbre Defense du joueur Adverse
+      var nbDefense : Int //nbre Defense du joueur Adverse
+      if p.joueurAdverse().champBataille().getCarte(position : rep2).getEtatCarte() //carte Adverse en mode attaque
+      {
+        nbDefense = p.joueurAdverse().champBataille().getCarte(position : rep2).getDefenseOff()
+      }
+      else nbDefense = p.joueurAdverse().champBataille().getCarte(position : rep2).getDefenseDef() //carte Adverse en mode defense
       var nbDegat : Int = p.joueurAdverse().champBataille().getCarte(position : rep2).getDegat() //nbre degat carte adverse
 
       if p.joueurAdverse().champBataille().getCarte(position : rep2).getNom()=="Roi"

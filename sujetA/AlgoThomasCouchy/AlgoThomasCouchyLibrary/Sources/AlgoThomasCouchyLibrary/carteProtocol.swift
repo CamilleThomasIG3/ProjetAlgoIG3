@@ -14,9 +14,13 @@ public protocol CarteProtocol {
     //precondition : carte soldat que si son emplacement est ChampBataille (car point depend du nombre de carte dans la main)
     func getAttaque() -> Int
 
-    //getDefense : Carte -> Int
-    //retourne la valeur de défense de la Carte
-    func getDefense() -> Int
+    //getDefenseDef : Carte -> Int
+    //retourne la valeur de défense de la Carte en mode Défense
+    func getDefenseDef() -> Int
+
+    //getDefenseOff : Carte -> Int
+    //retourne la valeur de défense de la Carte en mode Attaque
+    func getDefenseOff() -> Int
 
     //getPosition : Carte -> String?
     //retourne le nom de la poistion de la Carte sur le champ de bataille (ou Vide si la carte n'est pas placée sur le champ de bataille)
