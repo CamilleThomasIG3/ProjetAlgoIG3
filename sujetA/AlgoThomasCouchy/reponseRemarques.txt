@@ -19,10 +19,10 @@ Remarques spécifications Art Of War
   //Réponse : Nous sommes d'accord (modifié)
 
 • Royaume
-  Combien de citoyens par unité
-  //Réponse :
+  Combien de citoyens par unité dans le royaume
+  //Réponse : pas besoin de savoir car dans la version demandée par les professeurs, on compte le nombre de cartes en tout indépendemment de leur type pour déterminer le gagnant.
   Changer premiere carte du royaume
-  //Réponse :
+  //Réponse : 
 
 • Set/get -> var ? (facultatif)
   //Réponse : Nous avons préféré laisser notre version (set/get)
@@ -34,7 +34,7 @@ accéder aux cartes a partir des cases.
 
 • Champs de bataille
   A quoi sert nbCartesDefenseChamp ?
-  //Réponse : Il sert à savoir si il reste encore des cartes en mode Defense sur le plateau
+  //Réponse : Il sert à savoir s'il reste encore des cartes en mode Defense sur le plateau
   //et donc si le joueur peut encore attaquer
 
 • Main
