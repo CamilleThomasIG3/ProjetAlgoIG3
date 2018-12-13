@@ -4,9 +4,9 @@ Thomas Camille – Couchy Alexander-lee : auteurs des spécifications Art Of War
 Remarques spécifications Art Of War
 • Carte
   Set defense
-  //Réponse :
+  //Réponse : Modification de l'initialisateur : modification de la valeur de défense précédemment existante dans l'init par deux valeurs de défense (une qui sert quand la carte est en position d'attaque et une autre quand elle est en position de défense)
   Init sans paramètre(par défaut) pas nécessaire
-  //Réponse :
+  //Réponse : Initialisateur sans paramètre supprimé car inutile
 
 • Pioche
   Pas besoin de ajouter carte
