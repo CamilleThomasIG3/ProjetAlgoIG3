@@ -22,7 +22,7 @@ Remarques spécifications Art Of War
   Combien de citoyens par unité dans le royaume
   //Réponse : pas besoin de savoir car dans la version demandée par les professeurs, on compte le nombre de cartes en tout indépendemment de leur type pour déterminer le gagnant.
   Changer premiere carte du royaume
-  //Réponse : 
+  //Réponse : Pendant le jeu nous n'avons jamais besoin de changer la première carte du royaume.
 
 • Set/get -> var ? (facultatif)
   //Réponse : Nous avons préféré laisser notre version (set/get)
@@ -30,7 +30,7 @@ Remarques spécifications Art Of War
 • Champs de bataille + main
   Probleme avec carte : faire un choix entre accéder aux cases a partir des cartes ou
 accéder aux cartes a partir des cases.
-  //Réponse :
+  //Réponse : Ils n'ont pas su nous expliquer ce problème.
 
 • Champs de bataille
   A quoi sert nbCartesDefenseChamp ?
