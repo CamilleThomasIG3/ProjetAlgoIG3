@@ -1,0 +1,4 @@
+Position :
+
+- des rajout fonctions set/get : on leur a dait de le faire mais ne l'ont pas fait. Indispensable pour changer les coordonnées de la postion de la pièce lors d'un déplacement.
+
