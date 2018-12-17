@@ -1,27 +1,32 @@
 import Foundation
 	
 //piece est un numero, un nom, une position, un Int designant le joueur
-protocol PieceProtocol {
-    associatedtype PositionProtocol
+protocol PieceProtocol : Sequence{
+    associatedtype Position : PositionProtocol
     
     //init : Int x String x Position x Int -> Piece
 	//Initialisation : Creation d une piece a partir d un yokai et une position
 	//Donnees et precondition :
 	//	numero : Le numero de la piece va permettre de l identifier. Il est different pour chaque piece.
 	//			 Il reste fixe tout au long de la partie.
-	//			 Comme il doit y avoir 8 piece, le numero doit etre compris entre 1 et 8
-	//			 Le koropokkuru du joueur 1 a pour numero 1. (Il restera fixe meme apres qu il soit capture)
-	//			 Le koropokkuru du joueur 2 a pour numero 2. (Il restera fixe meme apres qu il soit capture)
-	//			 Le kodama du joueur 1 a pour numero 3. (Il restera fixe meme apres qu il soit capture)
-	//			 Le kodama du joueur 2 a pour numero 4. (Il restera fixe meme apres qu il soit capture)
-	//  Position : La position ou on desire creer la piece
+	//			 Comme il doit y avoir 8 piece, le numero doit etre compris entre 1 et 8 qui restera 
+    //           fixe pendant toute la durée du jeu
+	//			 Le koropokkuru du joueur 1 a pour numero 1.
+	//			 Le koropokkuru du joueur 2 a pour numero 2.
+	//			 Le kodama du joueur 1 a pour numero 3.
+	//			 Le kodama du joueur 2 a pour numero 4.
+	//           Le kitsune du joueur 1 a pour numero 5.
+    //           Le kitsune du joueur 2 a pour numero 6.
+    //           Le tanuki du joueur 1 a pour numero 7.
+    //           Le tanuki du joueur 2 a pour numero 8.
+    //  Position : La position ou on desire creer la piece
 	//		La 1ere coordonnee de la position doit etre un entier compris entre 1 et 3 inclus
 	//		La 2eme coordonnee de la position doit etre un entier compris entre 1 et 4 inclus
 	//		Le booleen de la position doit etre true (b, qui represente si la position est occupee)
 	//	Int : Entier compris entre 1 et 2 designant le joueur
 	//	nom : Le nom d un yokai. Ce doit etre l un des noms suivants :
 	//		koropokkuru, kitsune, tanuki, kodama ou kodama samurai
-	init (numero: Int, nom : String, position : PositionProtocol, joueur : Int)
+	init (numero: Int, nom : String, position : Position, joueur : Int)
 
 	//changerNom : Piece x String -> Piece
 	//Description : 
@@ -51,7 +56,7 @@ protocol PieceProtocol {
 	//	La 2eme coordonnee de la position doit etre un entier compris entre 1 et 4 inclus
 	//	La position est de coordonnee x et y etant egales a -1 et -1 si la piece est en reserve
 	//	Le booleen de la position doit etre true (b, qui represente si la position est occupee)
-	func getPosition() -> PositionProtocol
+	func getPosition() -> Position
 
 	//getJoueur : Piece -> Int
 	//Description : 
@@ -104,7 +109,7 @@ protocol PieceProtocol {
 	//Resultat et postcondition : 
 	//	la piece a sa nouvelle position
 	@discardableResult
-	mutating  func parachuter (position: PositionProtocol) -> Self
+	mutating  func parachuter (position: Position) -> Self
 
 	//deplacer : Piece x Position -> Piece
 	//Description : 
@@ -117,7 +122,7 @@ protocol PieceProtocol {
 	//Resultat et postcondition : 
 	//	la piece a sa nouvelle position
 	@discardableResult
-	mutating func deplacer (position : PositionProtocol) -> Self
+	mutating func deplacer (position : Position) -> Self
 
 	//deplacementPossible : Piece x Position -> Bool
 	//Description : 
@@ -137,7 +142,7 @@ protocol PieceProtocol {
 	//Resultat et postcondition : 
 	//	booleen : vrai si la piece donne peut se deplacer sur la Position donnee
 	//Note : Prendre en compte les "rebords du plateau"
-	func deplacementPossible (position :PositionProtocol) -> Bool
+	func deplacementPossible (position :Position) -> Bool
 
 	//evoluer : Piece -> Piece
 	//Description : 
@@ -161,70 +166,3 @@ protocol PieceProtocol {
 
 }
 
-//Un jeu est une collection de toutes les pieces du jeu
-protocol JeuProtocol : Sequence {
-    associatedtype PieceProtocol
-
-    associatedtype IteratorJeu : IteratorProtocol
-
-    //init : -> Jeu
-	//Initialisation : Creation d une collection de pieces comportant tous les yokais/pieces du jeu
-	//initialise les pieces des joueurs sur les bonnes positions
-	//on aura donc :
-    //le koropokkuru du joueur 1 en position (2,4, vrai)
-    //le koropokkuru du joueur 2 en Position (2,1, vrai)
-    //le kodama du joueur 1 en position (2,3, vrai)
-    //le kodama du joueur 2 en position (2,2, vrai)
-    //le kitsune du joueur 1 en position (1,4, vrai)
-    //le kitsune du joueur 2 en position (3,1, vrai)
-    //le tanuki du joueur 1 en position (3,4, vrai)
-    //le tanuki du joueur 2 en position (1,1, vrai)
-	init()
-
-
-	//getPiece : Jeu x Position -> (Piece | Vide)
-	//Description : 
-	//	Renvoie la piece correspondant a la position passee en parametre
-	//	ou vide s il n y en a pas
-	//Donnees et precondition :
-	//	renvoie vide si la position est (-1,-1)
-	//	Position : La position a laquelle se situe la piece qu on veut.
-	//	La 1ere coordonnee de la position doit etre un entier compris entre 1 et 3 inclus
-	//	La 2eme coordonnee de la position doit etre un entier compris entre 1 et 4 inclus	
-	//Resultat et postcondition : 
-	//	renvoie la piece a laquelle la position correspond
-	func getPiece (position : PositionProtocol) -> PieceProtocol?
-
-	//estOccupeeAllie : Jeu x Position x Int -> Bool
-	//Description : 
-    //	Renvoie vrai si une piece alliee est sur la position donnee en parametre, faux sinon
-    //Donnees et precondition :
-    //	Position : la position qu on veut etudier
-	//	La 1ere coordonnee de la position doit etre un entier compris entre 1 et 3 inclus
-	//	La 2eme coordonnee de la position doit etre un entier compris entre 1 et 4 inclus
-    //	Int : Le numero du joueur qui joue, compris entre 1 et 2
-    //Resultat :
-    //	Renvoie un booleen vrai si une piece alliee est sur la position donnee en parametre, faux sinon
-    func estOccupeeAllie (position : PositionProtocol, joueur : Int) -> Bool
-
-    //estOccupeeEnnemi : Jeu x Position x Int -> Bool
-    //Description : 
-    //	Renvoie vrai si une piece ennemie est sur la position donnee en parametre, erreur si position egal a (-1,-1), faux sinon
-    //Donnees et precondition :
-    //	Position : la position qu on veut etudier
-	//	La 1ere coordonnee de la position doit etre un entier compris entre 1 et 3 inclus
-	//	La 2eme coordonnee de la position doit etre un entier compris entre 1 et 4 inclus
-    //	Int : Le numero du joueur qui joue, compris entre 1 et 2
-    //Resultat :
-    //	Renvoie un booleen vrai si une piece ennemie est sur la position donnee en parametre, faux sinon
-    func estOccupeeEnnemi (position : PositionProtocol, joueur : Int) -> Bool
-
-    //makeIterator : Jeu -> IteratorJeu
-	//Description :
-    //  Parcourt toutes les pieces 
-    //  Creer un iterateur sur la collection pour iterer avec for in
-	func makeIterator() -> IteratorJeu
-
-
-    
-}

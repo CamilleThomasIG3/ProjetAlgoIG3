@@ -3,8 +3,10 @@ import Foundation
 //Plateau est une collection de Position
 //Cette collection peut etre parcourue par un iterateur
 protocol PlateauProtocol : Sequence {
+    associatedtype Position : PositionProtocol
     associatedtype IteratorPlateau : IteratorProtocol
-    associatedtype PositionProtocol
+        where IteratorPlateau.Element == Position
+
     
     //init : -> Plateau
     //Initialise une partie de douze positions 
@@ -29,7 +31,7 @@ protocol PlateauProtocol : Sequence {
     //Donnees et precondition :
     //  l entier x doit etre compris entre 1 et 3 inclus
     //  l entier y doit etre compris entre 1 et 4 inclus 
-    func getPos (x :Int, y:Int) ->PositionProtocol
+    func getPos (x :Int, y:Int) ->Position
 
     //makeIterator : Plateau -> ItPlateau
     //Description :
