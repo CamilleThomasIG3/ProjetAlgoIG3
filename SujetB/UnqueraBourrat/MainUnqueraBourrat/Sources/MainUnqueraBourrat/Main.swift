@@ -1,13 +1,11 @@
-import ProtoUnqueraBourrat
+import ProtocolUnqueraBourrat
 import Foundation
-import String
-
 
 //main
 
 //initialisation de la partie
-var plateau : PlateauProtocol
-var jeu : JeuProtocol
+var plateau : Plateau
+var jeu : Jeu
 
 //initialisation des compteurs pour les promotions
 var CpromoKoro1 : Int = 0
@@ -17,8 +15,8 @@ var CpromoKoro2 : Int = 0
 var player : Int = 1 
 
 //initialisation des choix de l'utilisateur
-var ChoixPos : PositionProtocol
-var ChoixPiece : PieceProtocol
+var ChoixPos : Position
+var ChoixPiece : Piece
 var finPartie : Bool
 
 //initialisation des variables jeu, partie

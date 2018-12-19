@@ -1,12 +1,11 @@
 class Piece : PieceProtocol{
-    typealias Position = Position
     private let numero : Int
     private var nom : String
     private var position : Position
     private var joueur : Int
     private var reserveBool : Bool = false
     
-    init(numero:  Int, nom: String, position: Position, joueur: Int){
+    required init(numero:  Int, nom: String, position: Position, joueur: Int){
         self.numero = numero
         self.nom = nom
         self.position = position
@@ -38,17 +37,19 @@ class Piece : PieceProtocol{
     }
     
     @discardableResult
-    func changerNom(nom : String){
+    func changerNom(nom : String)->Self{
         self.nom = nom
+	return self
     }
     
     @discardableResult
-    func changerJoueur(joueur : Int){
+    func changerJoueur(joueur : Int)->Self{
         self.joueur = joueur
+	return self
     }
     
     @discardableResult
-    func parachuter(position : Position){
+    func parachuter(position : Position)->Self{
         if self.estEnReserve(){
             self.position = position
             self.reserveBool = false
@@ -56,15 +57,17 @@ class Piece : PieceProtocol{
         else{
             print("Erreur : cette piece n'est pas en reserve.\n")
         }
+	return self
     }
     
     @discardableResult
-    func deplacer(position : Position){
+    func deplacer(position : Position)->Self{
         self.position = position
+	return self
     }
     
     @discardableResult
-    func seFaireCapturer(){
+    func seFaireCapturer()->Self{
         var reserve : Position = Position(x : -1, y: -1, b: true)
         self.position = reserve
         if self.joueur == 1{
@@ -73,6 +76,7 @@ class Piece : PieceProtocol{
         else{
             self.joueur = 1
         }
+	return self
     }
     
     @discardableResult

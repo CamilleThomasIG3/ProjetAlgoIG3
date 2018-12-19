@@ -34,7 +34,7 @@ protocol PositionProtocol {
   //setY : Position -> Int
   //Description :
   //Modifie la coordonnee y de cette position (comprise entre 1 et 4)
-  func setY()
+  func setY(y : Int)
 
   //getB : Position -> Bool
   //Description :

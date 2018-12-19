@@ -1,7 +1,7 @@
 import Foundation
 	
 //piece est un numero, un nom, une position, un Int designant le joueur
-protocol PieceProtocol : Sequence{
+protocol PieceProtocol{
     associatedtype Position : PositionProtocol
     
     //init : Int x String x Position x Int -> Piece

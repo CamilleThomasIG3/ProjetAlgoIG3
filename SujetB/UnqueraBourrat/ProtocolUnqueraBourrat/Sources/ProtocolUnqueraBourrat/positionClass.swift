@@ -10,7 +10,7 @@ class Position : PositionProtocol {
   // l entier y doit etre compris entre 1 et 4 inclus
   // le booleen b doit etre true si une piece occupe cette position, faux sinon
   // A l initialisation, les positions de coordonees (1,1);(1,2);(1,3);(2,2);(3,2);(4,1);(4,2);(4,3) sont occupees (b=true)
-  init(x :Int, y : Int, b : Bool){
+  required init(x : Int, y : Int, b : Bool){
     self.x = x
     self.y = y
     self.occupation = b
@@ -40,7 +40,7 @@ class Position : PositionProtocol {
   //setY : Position -> Int
   //Description :
   //Modifie la coordonnee y de cette position (comprise entre 1 et 4)
-  func setY(){
+  func setY(y : Int){
     self.y = y
   }
 
@@ -67,13 +67,17 @@ class Position : PositionProtocol {
       if (self.x == 1 && self.y == 1) || (self.x == 2 && self.y == 1) || (self.x == 3 && self.y == 1){
         return true
       }
-      else return false
+      else{
+	return false
+      }
     }
     else{
       if (self.x == 1 && self.y == 4) || (self.x == 2 && self.y == 4) || (self.x == 3 && self.y == 4){
         return true
       }
-      else return false
+      else{
+	return false
+      }
     }
   }
 
@@ -82,10 +86,13 @@ class Position : PositionProtocol {
   //change l occupation de la position.
   //Met le booleen b a false (si la position n est pas occupee par une piece) ou a true (si elle ne l est)
   @discardableResult
-  func changerB(){
+  func changerB()->Self{
     if self.occupation == true{
       self.occupation = false
     }
-    else self.occupation = true
+    else{
+	self.occupation = true
+    }
+    return self
   }
 }
