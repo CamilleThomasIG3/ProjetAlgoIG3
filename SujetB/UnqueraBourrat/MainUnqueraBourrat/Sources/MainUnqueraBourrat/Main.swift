@@ -1,7 +1,4 @@
-import ProtocolUnqueraBourrat
 import Foundation
-
-//main
 
 //initialisation de la partie
 var plateau : Plateau
@@ -12,7 +9,7 @@ var CpromoKoro1 : Int = 0
 var CpromoKoro2 : Int = 0
 
 //Au tour du joueur 1
-var player : Int = 1 
+var player : Int = 1
 
 //initialisation des choix de l'utilisateur
 var ChoixPos : Position
@@ -38,7 +35,7 @@ func choisirPiece () -≥ Piece{
 						IteratorPiec = jeu.makeIterator()
 						while let Piec = IteratorPiec.next() {
 							if (Piec.getNumero()==ChoixNum){
-								ChoixPiece = Piec	
+								ChoixPiece = Piec
 							}
 						}
 						//Si la piece correspondant au numero appartient bien a ce joueur, c est valide
@@ -78,7 +75,7 @@ func choisirPos() -≥ Position {
 									print("Les coordonnees de deplacement sont validees")
 									ok3=true
 								}
-								
+
 							}
 						}
 					}
@@ -117,7 +114,7 @@ while !finPartie {
 			print("position pour parachutage ok")
 			//Arret : La case choisie est libre et valide
 			ChoixPiece.parachuter(position : ChoixPos)
-			okChoix = true 
+			okChoix = true
 		}
 		else {
 			print ("Veuillez choisir une position pour le deplacement")
@@ -143,12 +140,12 @@ while !finPartie {
 							}
 							monstre.seFaireCapturer()
 						}
-					}	
+					}
 					ChoixPiece.deplacer(position : ChoixPos)
-					
+
 			}
 
-		}		
+		}
 	}
 
 
@@ -163,7 +160,7 @@ while !finPartie {
 		//Si un roi est en zone de promotion mais pas depuis 1 tour, le compteur s incremente
 		//Si un kodama est en zone de promotion mais pas depuis 1 tour depuis 1 tour, le compteur s incremente
 		if (piecein.getNumero()==1){
-			if (!piecein.getPosition().estPromotion()){ //SI PAS NULLLE 
+			if (!piecein.getPosition().estPromotion()){ //SI PAS NULLLE
 				CpromoKoro1=0
 			}
 
@@ -176,10 +173,10 @@ while !finPartie {
 					CpromoKoro1 = CpromoKoro1 + 1
 				}
 			}
-		} 
+		}
 
 		if (piecein.getNumero()==2){
-			if (!piecein.getPosition().estPromotion()) { //SI PAS NULLLE 
+			if (!piecein.getPosition().estPromotion()) { //SI PAS NULLLE
 				CpromoKoro2=0
 			}
 
@@ -195,14 +192,14 @@ while !finPartie {
         }
 
         if (piecein.getNumero()==3 && piecein.getNom()=="kodama"){
-			if (!piecein.getPosition().estPromotion()) { 
+			if (!piecein.getPosition().estPromotion()) {
 				print("Le kodama du joueur \(piecein.getJoueur()) evolue")
 				piecein.evoluer()
 			}
         }
 
         if (piecein.getNumero()==4 && piecein.getNom()=="kodama"){
-			if (!piecein.getPosition().estPromotion()) { //SI PAS NULLLE 
+			if (!piecein.getPosition().estPromotion()) { //SI PAS NULLLE
 				print("Le kodama du joueur \(piecein.getJoueur()) , evolue")
 				piecein.evoluer()
 			}
