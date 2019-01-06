@@ -1,4 +1,4 @@
-class Position : PositionProtocol {
+public class Position : PositionProtocol {
 
   private var x : Int
   private var y : Int
@@ -10,7 +10,7 @@ class Position : PositionProtocol {
   // l entier y doit etre compris entre 1 et 4 inclus
   // le booleen b doit etre true si une piece occupe cette position, faux sinon
   // A l initialisation, les positions de coordonees (1,1);(1,2);(1,3);(2,2);(3,2);(4,1);(4,2);(4,3) sont occupees (b=true)
-  required init(x : Int, y : Int, b : Bool){
+  public required init(x : Int, y : Int, b : Bool){
     self.x = x
     self.y = y
     self.occupation = b
@@ -19,14 +19,14 @@ class Position : PositionProtocol {
   //getX : Position -> Int
   //Description :
   //Renvoie la coordonnee x de cette position (accesseur) (comprise entre 1 et 3)
-  func getX() -> Int{
+  public func getX() -> Int{
     return self.x
   }
 
   //getY : Position -> Int
   //Description :
   //Renvoie la coordonnee y de cette position (accesseur) (comprise entre 1 et 4)
-  func getY() -> Int{
+  public func getY() -> Int{
     return self.y
   }
 
@@ -62,7 +62,7 @@ class Position : PositionProtocol {
   //Int : Le numero du joueur qui joue, compris entre 1 et 2
   //Resultat :
   //Renvoie un booleen
-  func estPromotion (joueur : Int)-> Bool{
+  public func estPromotion (joueur : Int)-> Bool{
     if joueur == 1{
       if (self.x == 1 && self.y == 1) || (self.x == 2 && self.y == 1) || (self.x == 3 && self.y == 1){
         return true

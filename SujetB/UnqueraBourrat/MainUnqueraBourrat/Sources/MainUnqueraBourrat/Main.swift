@@ -1,4 +1,5 @@
 import Foundation
+import ProtocolUnqueraBourrat
 
 //initialisation de la partie
 var plateau : Plateau
@@ -14,27 +15,28 @@ var player : Int = 1
 //initialisation des choix de l'utilisateur
 var ChoixPos : Position
 var ChoixPiece : Piece
-var finPartie : Bool
+var finPartie : Bool = false
 
 //initialisation des variables jeu, partie
-var plateau = Plateau()
-var jeu = Jeu()
+plateau = Plateau()
+jeu = Jeu()
 
 
 //Description : On lui demande donc de choisir un numero qui correspondra a la piece qu il veut jouer
 //Resultat : Renvoie le choix de la piece de l utilisateur
-func choisirPiece () -≥ Piece{
+func choisirPiece () -> Piece{
 	var ok1 : Bool = false
-	var ChoixPiece : Piece
-	while (! ok1) {
+	var Pos : Position = Position(x: 0, y: 0, b: false)
+	var ChoixPiece : Piece = Piece(numero:  1, nom: "koropokkuru", position: Pos, joueur: 1)
+	while (!ok1) {
 	print ("Veuillez choisir le numero de la piece a jouer")
 		if let ChoixNum = readLine() {
 			if let n = Int(ChoixNum) {
 				if (n>0 && n<9) {
 						//On recherche la piece dont le numero est ChoixNum
-						IteratorPiec = jeu.makeIterator()
+						var IteratorPiec = jeu.makeIterator()
 						while let Piec = IteratorPiec.next() {
-							if (Piec.getNumero()==ChoixNum){
+							if (Piec.getNumero()==n){
 								ChoixPiece = Piec
 							}
 						}
@@ -58,9 +60,9 @@ func choisirPiece () -≥ Piece{
 
 
 //On lui demande la position a laquelle il veut se deplacer
-func choisirPos() -≥ Position {
+func choisirPos() -> Position {
 	var ok3 : Bool = false
-	var ChoixPos : Position
+	var ChoixPos : Position = Position(x: 0, y: 0, b: false)
 	while (!ok3) {
 		print("choisir x compris entre 1 et 3")
 		if let x1 = readLine(){
@@ -70,12 +72,11 @@ func choisirPos() -≥ Position {
 					if let y1 = readLine() {
 						if let int2 = Int(y1){
 							if (int2>0 && int2<5){
-								ChoixPos=plateau.getPos(x : x1, y: y1)
-								if (!jeu.estOccupeeAllie(position : ChoixPos, joueur : player) {
+								ChoixPos = plateau.getPos(x : int1, y: int2)
+								if (!jeu.estOccupeeAllie(position : ChoixPos, joueur : player)) {
 									print("Les coordonnees de deplacement sont validees")
 									ok3=true
 								}
-
 							}
 						}
 					}
@@ -84,17 +85,16 @@ func choisirPos() -≥ Position {
 		}
 	}
 	// Arret : La position n'est pas occupee par un allie et le deplacement est possible
-	return choixPos
+	return ChoixPos
 }
 
 
 while !finPartie {
 	print("Veuillez selectionner une piece a jouer")
-
+	print("vous possedez les pieces suivantes :")
 	//On montre au joueur toutes les pieces qu il possede (et peut jouer)
-	IteratorJeu1 = jeu.makeIterator()
+	var IteratorJeu1 = jeu.makeIterator()
 	while let piecein = IteratorJeu1.next() {
-		print("vous possedez les pieces suivantes :")
 		if (piecein.getJoueur()==player){
 			print("numero :  \(piecein.getNumero()) , nom : \(piecein.getNom()) , coordonnee x: \(piecein.getPosition().getX()) coordonnee y : \(piecein.getPosition().getY()) ")
 		}
@@ -106,10 +106,10 @@ while !finPartie {
 		if (ChoixPiece.estEnReserve()) {
 			//On lui la position a laquelle il veut parachuter si la piece est en reserve
 			print("Veuillez chosisir la position a parachuter")
-			choixPos = choisirPos()
-			while (jeu.estOccupeeEnnemi(position : choixPos, joueur : player)) {
+			ChoixPos = choisirPos()
+			while (jeu.estOccupeeEnnemi(position : ChoixPos, joueur : player)) {
 				print ("Position occupee par un ennemi, parachutage impossible, veuillez choisir une autre position")
-				choixPos = choisirPos()
+				ChoixPos = choisirPos()
 			}
 			print("position pour parachutage ok")
 			//Arret : La case choisie est libre et valide
@@ -118,19 +118,19 @@ while !finPartie {
 		}
 		else {
 			print ("Veuillez choisir une position pour le deplacement")
-			choixPos = choisirPos()
+			ChoixPos = choisirPos()
 			if (ChoixPiece.deplacementPossible(position : ChoixPos)){
 				okChoix = true
 				print ("position ok pour deplacement")
 					//On regarde si la position a laquelle le joueur veut deplacer sa piece est occupee par un ennemi
 					if (jeu.estOccupeeEnnemi(position : ChoixPos, joueur : player)) {
-						if let monstre = jeu.getPiece(position : choixPos){
+						if let monstre = jeu.getPiece(position : ChoixPos){
 							//si on capture un koropokkuru adverse, la partie est gagnee
 							if (monstre.getNom()=="koropokkuru"){
 								print ("Le joueur ")
 								print(player)
 								print (" a gagne ")
-								finPartie == true
+								finPartie = true
 							}
 							else {
 							//si on capture un kodama samurai adverse, il redevient kodama
@@ -151,7 +151,7 @@ while !finPartie {
 
 
 // Parcourt de la collection de piece (de jeu) jusqu a rencontrer celle dont le numero est ...
-	IteratorJeu = jeu.makeIterator()
+	var IteratorJeu = jeu.makeIterator()
 	while let piecein = IteratorJeu.next() {
 		//Remet les compteurs a 0 si la piece nest plus en zone de promotion
 		//Sinon
@@ -160,7 +160,7 @@ while !finPartie {
 		//Si un roi est en zone de promotion mais pas depuis 1 tour, le compteur s incremente
 		//Si un kodama est en zone de promotion mais pas depuis 1 tour depuis 1 tour, le compteur s incremente
 		if (piecein.getNumero()==1){
-			if (!piecein.getPosition().estPromotion()){ //SI PAS NULLLE
+			if (!piecein.getPosition().estPromotion(joueur: 1)){ //SI PAS NULLLE
 				CpromoKoro1=0
 			}
 
@@ -176,7 +176,7 @@ while !finPartie {
 		}
 
 		if (piecein.getNumero()==2){
-			if (!piecein.getPosition().estPromotion()) { //SI PAS NULLLE
+			if (!piecein.getPosition().estPromotion(joueur: 2)) { //SI PAS NULLLE
 				CpromoKoro2=0
 			}
 
@@ -186,26 +186,25 @@ while !finPartie {
 					finPartie = true
 				}
 				else {
-					CpromoKoro2 = CpromoKoro2 +1
+					CpromoKoro2 = CpromoKoro2 + 1
 				}
 			}
-        }
+    }
 
-        if (piecein.getNumero()==3 && piecein.getNom()=="kodama"){
-			if (!piecein.getPosition().estPromotion()) {
+    if (piecein.getNumero()==3 && piecein.getNom()=="kodama"){
+			if (!piecein.getPosition().estPromotion(joueur: 1)) {
 				print("Le kodama du joueur \(piecein.getJoueur()) evolue")
 				piecein.evoluer()
 			}
-        }
+    }
 
-        if (piecein.getNumero()==4 && piecein.getNom()=="kodama"){
-			if (!piecein.getPosition().estPromotion()) { //SI PAS NULLLE
+    if (piecein.getNumero()==4 && piecein.getNom()=="kodama"){
+			if (!piecein.getPosition().estPromotion(joueur: 2)) { //SI PAS NULLLE
 				print("Le kodama du joueur \(piecein.getJoueur()) , evolue")
 				piecein.evoluer()
 			}
-        }
-
     }
+	}
 
 	//Gestion des tours :
 	//Si c'était le joueur 1 qui jouait, le tour passe au joueur 2

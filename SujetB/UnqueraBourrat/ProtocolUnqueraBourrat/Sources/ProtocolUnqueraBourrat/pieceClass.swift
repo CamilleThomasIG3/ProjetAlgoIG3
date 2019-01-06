@@ -1,38 +1,38 @@
-class Piece : PieceProtocol{
+public class Piece : PieceProtocol{
     private let numero : Int
     private var nom : String
     private var position : Position
     private var joueur : Int
     private var reserveBool : Bool = false
 
-    required init(numero:  Int, nom: String, position: Position, joueur: Int){
+    public required init(numero:  Int, nom: String, position: Position, joueur: Int){
         self.numero = numero
         self.nom = nom
         self.position = position
         self.joueur = joueur
     }
 
-    func getPosition() -> Position{
+    public func getPosition() -> Position{
         return self.position
     }
 
-    func getJoueur() -> Int{
+    public func getJoueur() -> Int{
         return self.joueur
     }
 
-    func estEnReserve() -> Bool{
+    public func estEnReserve() -> Bool{
         return self.reserveBool
     }
 
-    func getNom() -> String{
+    public func getNom() -> String{
         return self.nom
     }
 
-    func getNumero() -> Int{
+    public func getNumero() -> Int{
         return self.numero
     }
 
-    func deplacementPossible(position : Position) -> Bool{
+    public func deplacementPossible(position : Position) -> Bool{
         return !position.getB()
     }
 
@@ -49,7 +49,7 @@ class Piece : PieceProtocol{
     }
 
     @discardableResult
-    func parachuter(position : Position)->Self{
+    public func parachuter(position : Position)->Self{
         if self.estEnReserve(){
             self.position = position
             self.reserveBool = false
@@ -61,13 +61,13 @@ class Piece : PieceProtocol{
     }
 
     @discardableResult
-    func deplacer(position : Position)->Self{
+    public func deplacer(position : Position)->Self{
         self.position = position
 	return self
     }
 
     @discardableResult
-    func seFaireCapturer()->Self{
+    public func seFaireCapturer()->Self{
         let reserve : Position = Position(x : -1, y: -1, b: true)
         self.position = reserve
         if self.joueur == 1{
@@ -80,13 +80,13 @@ class Piece : PieceProtocol{
     }
 
     @discardableResult
-    func evoluer() -> Self{
+    public func evoluer() -> Self{
         self.nom = "kodama samourai"
         return self
     }
 
     @discardableResult
-    func diminuer() -> Self{
+    public func diminuer() -> Self{
         self.nom = "kodama"
         return self
     }
