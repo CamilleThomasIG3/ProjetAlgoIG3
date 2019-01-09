@@ -77,6 +77,9 @@ func choisirPos() -> Position {
 									print("Les coordonnees de deplacement sont validees")
 									ok3=true
 								}
+								else{
+									print ("Cette position est occupée par un allié")
+								}
 							}
 						}
 					}
@@ -88,7 +91,7 @@ func choisirPos() -> Position {
 	return ChoixPos
 }
 
-
+print("C'est au joueur 1")
 while !finPartie {
 	print("Veuillez selectionner une piece a jouer")
 	print("vous possedez les pieces suivantes :")
@@ -136,18 +139,25 @@ while !finPartie {
 							//si on capture un kodama samurai adverse, il redevient kodama
 								if (monstre.getNom()=="kodama samuraï"){
 									monstre.diminuer()
-									print("kodama samourai redevient samourai\n")
+									print("kodama samourai redevient samourai")
 								}
 							}
 							monstre.seFaireCapturer()
-							print("capturé\n")
+							print("capturé")
 						}
+						ChoixPiece.deplacer(position : ChoixPos)
+						print("piece déplacée")
 					}
-					ChoixPiece.deplacer(position : ChoixPos)
-					print("piece déplacée\n")
+					else if (!ChoixPos.getB()){
+						ChoixPiece.deplacer(position : ChoixPos)
+						print("piece déplacée")
+					}
+					else{
+						print("Vous ne pouvez pas aller sur cette case")
+					}
 			}
 			else{
-				print("Votre pièce ne vous permet pas de vous déplacer à cette position\n")
+				print("Votre pièce ne vous permet pas de vous déplacer à cette position")
 			}
 
 		}
@@ -181,7 +191,7 @@ while !finPartie {
 				}
 				else {
 					CpromoKoro1 = CpromoKoro1 + 1
-					print("Si votre Koropokkuru reste un tour dans la zone de promotion vosu gagnerez\n")
+					print("Si votre Koropokkuru reste un tour dans la zone de promotion vosu gagnerez")
 				}
 			}
 		}
@@ -198,7 +208,7 @@ while !finPartie {
 				}
 				else {
 					CpromoKoro2 = CpromoKoro2 + 1
-					print("Si votre Koropokkuru reste un tour dans la zone de promotion vosu gagnerez\n")
+					print("Si votre Koropokkuru reste un tour dans la zone de promotion vosu gagnerez")
 				}
 			}
     }
