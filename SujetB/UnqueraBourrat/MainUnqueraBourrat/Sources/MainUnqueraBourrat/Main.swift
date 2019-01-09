@@ -26,7 +26,7 @@ jeu = Jeu()
 //Resultat : Renvoie le choix de la piece de l utilisateur
 func choisirPiece () -> Piece{
 	var ok1 : Bool = false
-	var Pos : Position = Position(x: 0, y: 0, b: false)
+	let Pos : Position = Position(x: 0, y: 0, b: false)
 	var ChoixPiece : Piece = Piece(numero:  1, nom: "koropokkuru", position: Pos, joueur: 1)
 	while (!ok1) {
 	print ("Veuillez choisir le numero de la piece a jouer")
