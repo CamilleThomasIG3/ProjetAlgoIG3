@@ -118,6 +118,8 @@ public class Piece : PieceProtocol{
   @discardableResult
   public func parachuter(position : Position)->Self{
     if self.estEnReserve(){
+      self.position.changerB()
+      position.changerB()
       self.position = position
       self.reserveBool = false
     }
@@ -129,6 +131,8 @@ public class Piece : PieceProtocol{
 
   @discardableResult
   public func deplacer(position : Position)->Self{
+    self.position.changerB()
+    position.changerB()
     self.position = position
     return self
   }
