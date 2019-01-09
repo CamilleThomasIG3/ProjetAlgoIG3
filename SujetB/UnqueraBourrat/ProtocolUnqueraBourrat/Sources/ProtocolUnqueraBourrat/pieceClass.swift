@@ -141,6 +141,7 @@ public class Piece : PieceProtocol{
   public func seFaireCapturer()->Self{
     let reserve : Position = Position(x : -1, y: -1, b: true)
     self.position = reserve
+    self.reserveBool = true
     if self.joueur == 1{
       self.joueur = 2
     }

@@ -11,3 +11,5 @@ Position :
 -changeaient jamais l'état de la case quand on parachute ou deplace une piece (mettre occupée) //ils n'ont pas pris en compte nos remarques !!
 
 -plusieurs remarques n'ont pas été prisent en compte : specif inchangées pour la promotion du kodama (elle se fait direct pas au prochain tour !)
+
+-On pouvait mettre deux de nos pièces sur la meme case !

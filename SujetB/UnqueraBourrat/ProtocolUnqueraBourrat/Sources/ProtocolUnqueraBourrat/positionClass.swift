@@ -48,7 +48,7 @@ public class Position : PositionProtocol {
   //Description :
   //Renvoie le booleen b de cette position. (accesseur)
   //Renvoie true si la position est occupee par une piece, false sinon
-  func getB() -> Bool{
+  public func getB() -> Bool{
     return self.occupation
   }
 
