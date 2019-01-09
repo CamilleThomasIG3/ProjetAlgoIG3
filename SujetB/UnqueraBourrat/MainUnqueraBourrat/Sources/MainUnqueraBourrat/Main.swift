@@ -136,12 +136,18 @@ while !finPartie {
 							//si on capture un kodama samurai adverse, il redevient kodama
 								if (monstre.getNom()=="kodama samuraï"){
 									monstre.diminuer()
+									print("kodama samourai redevient samourai\n")
 								}
 							}
 							monstre.seFaireCapturer()
+							print("capturé\n")
 						}
 					}
 					ChoixPiece.deplacer(position : ChoixPos)
+					print("piece déplacée\n")
+			}
+			else{
+				print("Votre pièce ne vous permet pas de vous déplacer à cette position\n")
 			}
 
 		}
@@ -175,6 +181,7 @@ while !finPartie {
 				}
 				else {
 					CpromoKoro1 = CpromoKoro1 + 1
+					print("Si votre Koropokkuru reste un tour dans la zone de promotion vosu gagnerez\n")
 				}
 			}
 		}
@@ -191,6 +198,7 @@ while !finPartie {
 				}
 				else {
 					CpromoKoro2 = CpromoKoro2 + 1
+					print("Si votre Koropokkuru reste un tour dans la zone de promotion vosu gagnerez\n")
 				}
 			}
     }
@@ -215,10 +223,12 @@ while !finPartie {
 	//Sinon le tour passe au joueur 1
 	if (player == 1 ) {
 		player = 2
+		print("C'est au joueur 2")
 	}
 
 	else {
 		player = 1
+		print("C'est au joueur 1")
 	}
 
 }
