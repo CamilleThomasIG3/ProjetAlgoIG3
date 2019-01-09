@@ -119,13 +119,13 @@ public class Jeu : JeuProtocol{
             b = false
           }
           else{
-	 	b = true //si elle appartient au joueur adverse
-	  }
+	 	        b = true //si elle appartient au joueur adverse
+	        }
         }
       }
     }
     else{
-	b = false//position non occupée
+	     b = false//position non occupée
     }
     return b
   }

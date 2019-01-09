@@ -68,7 +68,7 @@ public class Position : PositionProtocol {
         return true
       }
       else{
-	return false
+        return false
       }
     }
     else{
@@ -76,7 +76,7 @@ public class Position : PositionProtocol {
         return true
       }
       else{
-	return false
+        return false
       }
     }
   }

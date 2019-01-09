@@ -142,7 +142,6 @@ while !finPartie {
 						}
 					}
 					ChoixPiece.deplacer(position : ChoixPos)
-
 			}
 
 		}
@@ -157,8 +156,13 @@ while !finPartie {
 		//Sinon
 		//Si un roi (numero 1 et 2) est en zone de promotion depuis 1 tour, la partie est gagnee
 		//Si un kodama (numero 3 et 4) est en zone de promotion depuis 1 tour, il evolue
+
+		//Correction (ci-dessus): Faux, d'après les règles, le kodama évolue dès qu'il arrive en zone de promotion
+
 		//Si un roi est en zone de promotion mais pas depuis 1 tour, le compteur s incremente
 		//Si un kodama est en zone de promotion mais pas depuis 1 tour depuis 1 tour, le compteur s incremente
+
+		//Correction (ci-dessus): Pas de compteur pour kodama car l'évolution est instantannée
 		if (piecein.getNumero()==1){
 			if (!piecein.getPosition().estPromotion(joueur: 1)){ //SI PAS NULLLE
 				CpromoKoro1=0
@@ -192,14 +196,14 @@ while !finPartie {
     }
 
     if (piecein.getNumero()==3 && piecein.getNom()=="kodama"){
-			if (!piecein.getPosition().estPromotion(joueur: 1)) {
+			if (piecein.getPosition().estPromotion(joueur: 1)) { //!piecein.getPosition().estPromotion(joueur: 1) il faut enlever le"!" !!
 				print("Le kodama du joueur \(piecein.getJoueur()) evolue")
 				piecein.evoluer()
 			}
     }
 
     if (piecein.getNumero()==4 && piecein.getNom()=="kodama"){
-			if (!piecein.getPosition().estPromotion(joueur: 2)) { //SI PAS NULLLE
+			if (piecein.getPosition().estPromotion(joueur: 2)) { //SI PAS NULLE //Pareil qu'au-dessus
 				print("Le kodama du joueur \(piecein.getJoueur()) , evolue")
 				piecein.evoluer()
 			}
