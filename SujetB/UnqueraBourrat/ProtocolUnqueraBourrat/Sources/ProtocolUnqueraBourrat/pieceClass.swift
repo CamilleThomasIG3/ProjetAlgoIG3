@@ -54,7 +54,7 @@ public class Piece : PieceProtocol{
       }
       else{ return false}
     }
-    else if self.numero==3 && self.nom=="kodama samurai"{ //kodama du joueur 1 en mode samourai
+    else if self.numero==3 && self.nom=="kodama samourai"{ //kodama du joueur 1 en mode samourai
       if (x+1==xp && y==yp) || (x-1==xp && y==yp) || (x==xp && y+1==yp) || (x==xp && y-1==yp)
       || (x+1==xp && y-1==yp) || (x-1==xp && y-1==yp){
         return true
@@ -70,7 +70,7 @@ public class Piece : PieceProtocol{
       }
       else{ return false}
     }
-    else if self.numero==4 && self.nom=="kodama samurai"{ //kodama du joueur 2 en mode samourai
+    else if self.numero==4 && self.nom=="kodama samourai"{ //kodama du joueur 2 en mode samourai
       if (x+1==xp && y==yp) || (x-1==xp && y==yp) || (x==xp && y+1==yp) || (x==xp && y-1==yp) || (x+1==xp && y+1==yp)
       || (x-1==xp && y+1==yp){
         return true

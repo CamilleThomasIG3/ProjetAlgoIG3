@@ -106,6 +106,7 @@ while !finPartie {
 	var okChoix : Bool = false
 	while (!okChoix) {
 		ChoixPiece = choisirPiece()
+		print("\(ChoixPiece.getNom())")
 		if (ChoixPiece.estEnReserve()) {
 			//On lui la position a laquelle il veut parachuter si la piece est en reserve
 			print("Veuillez chosisir la position a parachuter")
