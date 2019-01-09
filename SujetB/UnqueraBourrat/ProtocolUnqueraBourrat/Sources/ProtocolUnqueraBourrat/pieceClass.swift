@@ -119,8 +119,8 @@ public class Piece : PieceProtocol{
   public func parachuter(position : Position)->Self{
     if self.estEnReserve(){
       self.position.changerB()
-      position.changerB()
       self.position = position
+      self.position.changerB()
       self.reserveBool = false
     }
     else{

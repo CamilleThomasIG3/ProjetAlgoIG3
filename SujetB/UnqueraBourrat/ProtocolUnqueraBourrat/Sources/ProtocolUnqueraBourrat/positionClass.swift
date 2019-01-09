@@ -86,7 +86,7 @@ public class Position : PositionProtocol {
   //change l occupation de la position.
   //Met le booleen b a false (si la position n est pas occupee par une piece) ou a true (si elle ne l est)
   @discardableResult
-  func changerB()->Self{
+  public func changerB()->Self{
     self.occupation = !self.occupation
     return self
   }

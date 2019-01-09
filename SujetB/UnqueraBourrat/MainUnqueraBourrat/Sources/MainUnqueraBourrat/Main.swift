@@ -143,6 +143,7 @@ while !finPartie {
 								}
 							}
 							monstre.seFaireCapturer()
+							ChoixPos.changerB()
 							print("capturé")
 						}
 						ChoixPiece.deplacer(position : ChoixPos)
