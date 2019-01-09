@@ -148,12 +148,12 @@ while !finPartie {
 						ChoixPiece.deplacer(position : ChoixPos)
 						print("piece déplacée")
 					}
-					else if (!ChoixPos.getB()){
-						ChoixPiece.deplacer(position : ChoixPos)
-						print("piece déplacée")
+					else if (jeu.estOccupeeAllie(position : ChoixPos, joueur : player)){
+						print("Vous ne pouvez pas aller sur cette case")
 					}
 					else{
-						print("Vous ne pouvez pas aller sur cette case")
+						ChoixPiece.deplacer(position : ChoixPos)
+						print("piece déplacée")
 					}
 			}
 			else{

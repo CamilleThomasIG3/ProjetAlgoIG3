@@ -132,8 +132,8 @@ public class Piece : PieceProtocol{
   @discardableResult
   public func deplacer(position : Position)->Self{
     self.position.changerB()
-    position.changerB()
     self.position = position
+    self.position.changerB()
     return self
   }
 
