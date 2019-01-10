@@ -8,4 +8,4 @@
 
 -On pouvait mettre deux de nos pièces sur la mếme case !
 
--Manquait de l'affichage pour le suivit du joueur (quel joueur doit joué, qu'est qu'il s'est passé sur le plateau)
+-Il Manquait de l'affichage pour le suivit du joueur (quel joueur doit joué, qu'est qu'il s'est passé sur le plateau)
