@@ -1,11 +1,11 @@
--Piece n'est pas un protocol de type Sequence (on l'a enlevé)
+-Piece n'est pas un protocole de type Séquence (on l'a enlevé)
 
 -On a du refaire les packages pour pouvoir compiler (package mal fait)
 
--changeaient jamais l'état de la case quand on parachute ou deplace une piece (mettre occupée) //Pas spécifié : ils n'ont pas pris en compte nos remarques !!
+-changeaient jamais l'état de la case quand on parachute ou déplace une pièce (mettre occupée) //Pas spécifié : ils n'ont pas pris en compte nos remarques !!
 
--plusieurs remarques n'ont pas été prisent en compte : specif inchangées pour la promotion du kodama (elle se fait direct pas au prochain tour !)
+-plusieurs remarques n'ont pas été prisent en compte : spécif inchangées pour la promotion du kodama (elle se fait direct pas au prochain tour !)
 
--On pouvait mettre deux de nos pièces sur la meme case !
+-On pouvait mettre deux de nos pièces sur la mếme case !
 
--Manquait de l'affichage pour le suivit du joueur (quel joueur doit joué, quest quil s'est passé sur le plateau)
+-Manquait de l'affichage pour le suivit du joueur (quel joueur doit joué, qu'est qu'il s'est passé sur le plateau)
